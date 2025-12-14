@@ -3,7 +3,7 @@
 
 import { useChat } from 'ai/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { Sparkles, Send, X, Terminal, User, Bot } from 'lucide-react';
 
 interface AICoreProps {
@@ -31,20 +31,19 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
     handleSubmit(e);
   };
 
-
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-0 md:p-4">
+      <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/80 backdrop-blur-md p-0 md:p-4 md:items-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="w-full h-full md:h-[650px] md:w-[500px] md:rounded-3xl bg-[#0a0a0a] border border-cyan-500/30 shadow-2xl shadow-cyan-900/20 overflow-hidden flex flex-col"
+          className="w-full h-[90vh] md:h-auto md:max-h-[80vh] md:w-full md:max-w-lg md:rounded-3xl bg-[#0a0a0a] border border-cyan-500/30 shadow-2xl shadow-cyan-900/20 overflow-hidden flex flex-col"
         >
           {/* Header */}
-          <div className="p-4 border-b border-white/10 flex justify-between items-center bg-cyan-950/10">
+          <div className="p-4 border-b border-white/10 flex justify-between items-center bg-cyan-950/10 shrink-0">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
                   <Terminal size={18} className="text-cyan-400" />
@@ -60,7 +59,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-[url('/grid.svg')] bg-opacity-5">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-[url('/grid.svg')] bg-opacity-5 min-h-0">
             {messages.length === 0 && (
               <div className="text-center text-neutral-500 mt-24 flex flex-col items-center px-8">
                 <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
@@ -106,7 +105,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
           </div>
 
           {/* Input Area */}
-          <form onSubmit={handleFormSubmit} className="p-4 border-t border-white/10 bg-[#050505]">
+          <form onSubmit={handleFormSubmit} className="p-4 border-t border-white/10 bg-[#050505] shrink-0">
             <div className="flex gap-2 items-end">
               <textarea
                 value={input}

@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
   if (!apiKey) {
-    return new Response("Error: GOOGLE_GENERATIVE_AI_API_KEY missing in .env file", { status: 500 });
+    return new Response("Error: GOOGLE_GENERATIVE_AI_API_KEY is not set in the environment. Please add it to your .env file.", { status: 500 });
   }
 
   const google = createGoogleGenerativeAI({
