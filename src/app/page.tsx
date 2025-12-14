@@ -35,10 +35,10 @@ export default function Home() {
       <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 min-h-screen flex flex-col justify-start md:justify-center pb-32 pt-8 md:pt-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-3 gap-4 md:gap-6 md:h-auto lg:h-[80vh]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 md:h-auto lg:h-[80vh] lg:grid-rows-2">
           
           <motion.div 
-            className="col-span-1 md:col-span-2 lg:row-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-colors relative overflow-hidden"
+            className="col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-colors relative overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -87,30 +87,6 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {portfolioData.projects.map((project, i) => (
-            <motion.div
-              layoutId={project.id}
-              key={project.id}
-              onClick={() => setSelectedProjectId(project.id)}
-              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1 + 0.2 }}
-              whileHover={{ y: -5 }}
-            >
-              <div className="absolute top-4 right-4 text-3xl md:text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-50 group-hover:opacity-100">{project.emoji}</div>
-              <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className={`text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full ${project.status === 'Live App' ? 'text-green-400 border-green-900/50 bg-green-950/30' : 'text-cyan-400 border-cyan-900/50 bg-cyan-950/30'}`}>
-                    {project.status}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.title}</h3>
-                <p className="text-xs text-neutral-400 line-clamp-2">{project.summary}</p>
-              </div>
-            </motion.div>
-          ))}
-
           <motion.div 
             className="col-span-1 md:col-span-2 lg:col-span-1 lg:row-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 relative overflow-hidden flex flex-col"
             initial={{ opacity: 0, y: 20 }}
@@ -141,6 +117,29 @@ export default function Home() {
               </div>
           </motion.div>
 
+          {portfolioData.projects.map((project, i) => (
+            <motion.div
+              layoutId={project.id}
+              key={project.id}
+              onClick={() => setSelectedProjectId(project.id)}
+              className="col-span-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1 + 0.2 }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="absolute top-4 right-4 text-3xl md:text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-50 group-hover:opacity-100">{project.emoji}</div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full ${project.status === 'Live App' ? 'text-green-400 border-green-900/50 bg-green-950/30' : 'text-cyan-400 border-cyan-900/50 bg-cyan-950/30'}`}>
+                    {project.status}
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.title}</h3>
+                <p className="text-xs text-neutral-400 line-clamp-2">{project.summary}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
       
