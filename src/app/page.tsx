@@ -83,7 +83,7 @@ export default function Home() {
                     whileHover={{ rotate: 15 }}
                     className="mb-4 md:mb-6"
                   >
-                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={56} height={56} className="w-10 h-10 md:w-14 md:h-14" />
+                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={64} height={64} className="w-12 h-12 md:w-16 md:h-16" />
                   </motion.div>
               </div>
               
@@ -438,3 +438,5 @@ export default function Home() {
     </main>
   );
 }
+
+    
