@@ -36,7 +36,7 @@ export async function chat(messages: CoreMessage[]) {
   });
 
   return streamText({
-    model: google('models/gemini-1.5-pro'),
+    model: google('gemini-2.5-flash-lite'),
     system: systemPrompt,
     messages,
   });
