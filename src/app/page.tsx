@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -205,7 +204,7 @@ export default function Home() {
             <motion.div
               layoutId={`card-${selectedProject.id}`}
               onClick={(e) => e.stopPropagation()}
-              className="w-full md:max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]"
+              className="w-full md:max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] h-auto"
             >
               <button onClick={closeAllViews} className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
               
@@ -254,7 +253,7 @@ export default function Home() {
             <motion.div
               layoutId={`card-${selectedCareer.id}`}
               onClick={(e) => e.stopPropagation()}
-              className="w-full md:max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]"
+              className="w-full md:max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] h-auto"
             >
               <button onClick={closeAllViews} className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
 
@@ -286,7 +285,7 @@ export default function Home() {
       
       <AnimatePresence>
         {activeView === 'chat' && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-24" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-28" onClick={closeAllViews}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -433,5 +432,3 @@ export default function Home() {
     </main>
   );
 }
-
-    
