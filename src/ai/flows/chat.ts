@@ -1,3 +1,4 @@
+
 'use server';
 
 import { CoreMessage, streamText } from 'ai';
@@ -122,7 +123,7 @@ const systemPrompt = `
 
 export async function chat(messages: CoreMessage[]) {
   const result = await streamText({
-    model: google('models/gemini-2.5-flash'),
+    model: google('models/gemini-1.5-flash'),
     system: systemPrompt,
     messages,
   });

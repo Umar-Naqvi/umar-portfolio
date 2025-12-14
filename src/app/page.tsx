@@ -83,7 +83,7 @@ export default function Home() {
                     whileHover={{ rotate: 15 }}
                     className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6 p-2 text-cyan-400 bg-white/5 rounded-2xl border border-white/10"
                   >
-                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={64} height={64} className="opacity-90 group-hover:opacity-100" />
+                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={64} height={64} />
                   </motion.div>
               </div>
               
@@ -158,7 +158,7 @@ export default function Home() {
               whileHover={{ y: -5 }}
             >
               <div className="absolute top-4 right-4 text-cyan-400 transition-all duration-300 opacity-80 group-hover:opacity-100">
-                {project.logoUrl && <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} />}
+                <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} />
               </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2">
@@ -216,7 +216,7 @@ export default function Home() {
                 <div className="h-40 md:h-48 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 relative flex items-center justify-center">
                    <div className="absolute -bottom-8 left-6 md:left-12 flex items-end gap-4">
                       <div className="w-16 h-16 md:w-20 md:h-20 p-2 flex items-center justify-center bg-black/30 rounded-2xl border border-white/10 filter drop-shadow-lg">
-                        {selectedProject.logoUrl && <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} width={80} height={80} />}
+                        <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} width={80} height={80} />
                       </div>
                       <div className="pb-1">
                          <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedProject.title}</h2>
@@ -231,7 +231,7 @@ export default function Home() {
                   <p className="text-base md:text-lg text-neutral-300 mb-8 leading-relaxed max-w-3xl">{selectedProject.description}</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                      <div className="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/5">
-                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Contact size={14} /> Key Metrics</h4>
+                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Rocket size={14} /> Key Metrics</h4>
                         <ul className="space-y-3">
                           {selectedProject.metrics.map((m, i) => (<li key={i} className="text-sm text-neutral-300 flex items-center gap-3"><div className="w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>{m}</li>))}
                         </ul>
@@ -307,7 +307,7 @@ export default function Home() {
                   </div>
                   <div>
                       <span className="block font-bold text-sm text-white">AI Twin System</span>
-                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
+                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
                   </div>
                 </div>
                 <button onClick={closeAllViews} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
