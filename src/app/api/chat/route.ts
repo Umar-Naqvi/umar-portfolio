@@ -1,6 +1,5 @@
 import {chat} from '@/ai/flows/chat';
 import {type CoreMessage} from 'ai';
-import {streamText} from 'ai';
 
 export const maxDuration = 30;
 export const dynamic = 'force-dynamic';
