@@ -1,8 +1,9 @@
 'use server';
 
 import { portfolioData } from '@/lib/data';
-import { CoreMessage, streamText } from 'ai';
+import { CoreMessage } from 'ai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAIStream } from '@ai-sdk/google';
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
@@ -57,19 +58,6 @@ export async function chat(messages: CoreMessage[]) {
 
   const result = await chatSession.sendMessageStream(prompt);
   
-  // Convert the AsyncGenerator to a ReadableStream
-  const stream = new ReadableStream({
-    async start(controller) {
-      for await (const chunk of result.stream) {
-        const chunkText = chunk.text();
-        if (chunkText) {
-          controller.enqueue(chunkText);
-        }
-      }
-      controller.close();
-    },
-  });
-
-  // This function now returns a ReadableStream, which will be handled in the API route.
-  return stream;
+  // Convert the response into a friendly text-stream
+  return GoogleGenerativeAIStream(result);
 }
