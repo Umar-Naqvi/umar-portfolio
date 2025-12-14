@@ -21,8 +21,9 @@ const initialMessages = [
 ];
 
 export default function AICore({ isOpen, onClose }: AICoreProps) {
-  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages, append } = useChat({
     initialMessages,
+    api: '/api/chat',
     onFinish: () => {
       scrollToBottom();
     }
@@ -41,9 +42,18 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
 
   useEffect(scrollToBottom, [messages]);
   
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleSubmit(e);
+    const userInput = input;
+    if (!userInput.trim()) return;
+
+    await append({
+      role: 'user',
+      content: userInput,
+    });
+  
+    // Clear input after appending
+    handleInputChange({ target: { value: '' } } as any);
   };
 
   if (!isOpen) return null;
@@ -64,7 +74,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
             </div>
             <div>
               <h2 className="font-bold text-white">AI Twin</h2>
-              <p className="text-xs text-neutral-400">Powered by Gemini 1.5 Flash</p>
+              <p className="text-xs text-neutral-400">Powered by Gemini 2.5 Flash</p>
             </div>
           </div>
           <Button variant="ghost" size="icon" onClick={onClose} className="text-neutral-400 hover:text-white">
