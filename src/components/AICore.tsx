@@ -72,12 +72,16 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
           {/* Messages Area */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-opacity-5 min-h-0">
             {messages.length === 0 && (
-              <div className="text-center text-neutral-500 mt-24 flex flex-col items-center px-8">
+              <div className="text-center text-neutral-500 mt-16 flex flex-col items-center px-8">
                 <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
                     <Sparkles className="w-8 h-8 text-cyan-500" />
                 </div>
-                <p className="text-lg font-medium text-white mb-2">System Initialized</p>
-                <p className="text-sm text-neutral-400">Ask about experience, project details, or request contact info.</p>
+                <p className="text-lg font-medium text-white mb-2">System Online ⚡️</p>
+                <div className="text-sm text-neutral-400 space-y-2">
+                    <p>I am Umar's AI Digital Twin.</p>
+                    <p>I have access to his entire neural network—from his 0-to-1 Product Management strategies to his obsession with Firebase Studio. I'm ready to deploy answers about his experience, projects, or why he thinks AI is the ultimate assistant.</p>
+                    <p>Initiate a query below! 👇</p>
+                </div>
                 <div className="flex flex-wrap gap-2 justify-center mt-6">
                     <button type="button" onClick={() => handleQuickReply("Tell me about BillFlow")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"Tell me about BillFlow"</button>
                     <button type="button" onClick={() => handleQuickReply("How can I contact him?")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How can I contact him?"</button>
