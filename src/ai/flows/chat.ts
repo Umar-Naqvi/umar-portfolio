@@ -2,7 +2,7 @@
 
 import {ai} from '@/ai/genkit';
 import {portfolioData} from '@/lib/data';
-import {generate} from 'genkit/ai';
+import {generate} from 'genkit';
 import {Message, toGenkitMessage, CoreMessage} from 'ai';
 import {StreamData, streamToResponse, readableFromAsyncIterable} from 'ai';
 
