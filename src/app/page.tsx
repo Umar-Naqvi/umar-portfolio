@@ -68,11 +68,11 @@ export default function Home() {
             </div>
             
             <div className="flex flex-wrap items-center gap-3 mt-6">
-              <a href={portfolioData.profile.resumeUrl} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
-                <Download size={20} />
-              </a>
               <a href={portfolioData.profile.contact.socials.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
                 <Linkedin size={20} />
+              </a>
+              <a href={portfolioData.profile.contact.socials.github} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
+                <Github size={20} />
               </a>
               <a href={`mailto:${portfolioData.profile.contact.email}`} className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
                 <Mail size={20} />
@@ -297,3 +297,4 @@ export default function Home() {
     </main>
   );
 }
+
