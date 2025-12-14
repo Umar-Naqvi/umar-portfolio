@@ -61,7 +61,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
               </div>
               <div>
                   <span className="block font-bold text-sm text-white">AI Twin System</span>
-                  <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
+                  <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-PRO</span>
               </div>
             </div>
             <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
