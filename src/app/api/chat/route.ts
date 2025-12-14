@@ -1,25 +1,22 @@
-
 import { portfolioData } from '@/lib/data';
-import {GoogleGenerativeAI} from '@google/generative-ai';
-import {GoogleAIStream, StreamingTextResponse} from 'ai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { streamText } from 'ai';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
-  const userQuery = messages[messages.length - 1].content;
   const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-
   if (!apiKey) {
-    return new Response("Error: API Key missing in .env file", { status: 500 });
+    return new Response("Error: GOOGLE_GENERATIVE_AI_API_KEY missing in .env file", { status: 500 });
   }
 
-  const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+  const google = createGoogleGenerativeAI({
+    apiKey: apiKey,
+  });
 
-  const systemPrompt = `
-    You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
+  const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
     CORE PERSONALITY:
     - You are enthusiastic, resilient, and a "Tech Enthusiast".
@@ -37,9 +34,11 @@ export async function POST(req: Request) {
     5. Keep responses under 3 sentences unless asked for a deep dive.
   `;
 
-  const fullPrompt = `${systemPrompt}\n\nUser Question: ${userQuery}`;
+  const result = await streamText({
+    model: google('models/gemini-1.5-flash'),
+    system: systemPrompt,
+    messages,
+  });
 
-  const stream = await model.generateContentStream(fullPrompt);
-
-  return new StreamingTextResponse(GoogleAIStream(stream));
+  return result.toAIStreamResponse();
 }
