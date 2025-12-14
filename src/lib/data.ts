@@ -1,3 +1,4 @@
+
 export const portfolioData = {
   profile: {
     name: "Mohammed Umar Ben Naqvi",
@@ -33,14 +34,14 @@ export const portfolioData = {
     },
     {
       id: "crm",
-      year: "2024 - 2025",
+      year: "May 2024 - May 2025",
       role: "CRM Manager",
       org: "Renuka Automotive (Ashok Leyland)",
       desc: "• Acted as the key liaison between sales, marketing, and finance stakeholders to gather cross-functional requirements.\n• Engineered end-to-end sales cycles in SAP CRM, reducing manual data compilation by 50%.\n• Managed GTM strategy for multi-district campaigns, driving a 30% increase in brand awareness."
     },
     {
       id: "freelance",
-      year: "2023 - 2024",
+      year: "Apr 2023 - Mar 2024",
       role: "Digital Marketing & Web Freelancer",
       org: "Self-Employed",
       desc: "• Managed full-cycle website development for E-commerce & Auto clients, taking products from UI/UX wireframing (Figma) to deployment.\n• Leveraged GA4 user data and feedback loops to guide product adjustments, resulting in a 35% enhancement in User Experience (UX)."
