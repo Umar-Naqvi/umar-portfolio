@@ -30,7 +30,7 @@ export async function chat(messages: CoreMessage[]) {
   // Initialize the Google AI client inside the function
   // to ensure the environment variable is read at runtime.
   const google = createGoogleGenerativeAI({
-    apiKey: process.env.GEMINI_API_KEY,
+    apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
   });
 
   return streamText({
