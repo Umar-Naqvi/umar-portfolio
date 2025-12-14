@@ -2,8 +2,8 @@
 
 import {ai} from '@/ai/genkit';
 import {portfolioData} from '@/lib/data';
-import {generate} from 'genkit';
-import {Message, Role, toGenkitMessage} from 'ai';
+import {generate}alize} from 'genkit';
+import {Message, toGenkitMessage} from 'ai';
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
@@ -29,7 +29,8 @@ export const chat = ai.defineFlow(
   },
   async (messages: Message[]) => {
     const history = messages.map(toGenkitMessage);
-    const system = {role: 'system', content: [{text: systemPrompt}]};
+    const system = {role: 'system' as const, content: [{text: systemPrompt}]};
+    
     const response = await generate({
       model: ai.model,
       history: [system, ...history],
@@ -37,6 +38,7 @@ export const chat = ai.defineFlow(
         temperature: 0.8,
       },
     });
-    return response.output.content[0].text;
+
+    return response.text;
   }
 );
