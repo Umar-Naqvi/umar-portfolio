@@ -1,6 +1,9 @@
 import { portfolioData } from '@/lib/data';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText } from 'ai';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const dynamic = 'force-dynamic';
 
