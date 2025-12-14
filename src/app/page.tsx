@@ -81,9 +81,9 @@ export default function Home() {
               <div className="flex justify-between items-start">
                   <motion.div 
                     whileHover={{ rotate: 15 }}
-                    className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6 p-2 text-cyan-400 bg-white/5 rounded-2xl border border-white/10"
+                    className="mb-4 md:mb-6"
                   >
-                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={64} height={64} />
+                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={56} height={56} className="w-10 h-10 md:w-14 md:h-14" />
                   </motion.div>
               </div>
               
@@ -157,8 +157,8 @@ export default function Home() {
               transition={{ delay: i * 0.1 + 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <div className="absolute top-4 right-4 text-cyan-400 transition-all duration-300">
-                <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} />
+              <div className="absolute top-4 right-4 transition-all duration-300">
+                <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} className="w-10 h-10 md:w-12 md:h-12" />
               </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2">
