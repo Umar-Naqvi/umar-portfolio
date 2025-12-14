@@ -1,33 +1,63 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useChat } from 'ai/react';
 import { portfolioData } from '@/lib/data';
 import { 
     Github, Linkedin, Mail, Phone, ExternalLink, X, 
-    BrainCircuit, FileText, Rocket, Globe, Sparkles, 
-    Contact, Cpu, Download, GraduationCap, Briefcase
+    BrainCircuit, Rocket, Globe, Sparkles, 
+    Contact, Cpu, Download, GraduationCap, Briefcase,
+    Send, Terminal, User, Bot
 } from 'lucide-react';
-import AICore from '@/components/AICore';
 import FluidBackground from '@/components/FluidBackground';
 
 export default function Home() {
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
-  const [selectedCareerId, setSelectedCareerId] = useState<string | null>(null);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [activeView, setActiveView] = useState<string | null>(null);
 
-  const selectedProject = portfolioData.projects.find(p => p.id === selectedProjectId);
-  const selectedCareer = portfolioData.career.find(c => c.id === selectedCareerId);
+  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: '/api/chat',
+    onFinish: () => {
+      scrollToBottom();
+    },
+  });
 
-  const toggleChat = () => setIsChatOpen(!isChatOpen);
-  const toggleContact = () => setIsContactOpen(!isContactOpen);
-  const resetAll = () => {
-    setSelectedProjectId(null);
-    setSelectedCareerId(null);
-    setIsChatOpen(false);
-    setIsContactOpen(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (activeView === 'chat') {
+      scrollToBottom();
+    }
+  }, [messages, activeView]);
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+    handleSubmit(e);
+  };
+  
+  const handleQuickReply = (question: string) => {
+    setInput(question);
+    setTimeout(() => {
+      formRef.current?.requestSubmit();
+    }, 0);
+  }
+
+  const selectedProject = portfolioData.projects.find(p => p.id === activeView);
+  const selectedCareer = portfolioData.career.find(c => c.id === activeView);
+
+  const openView = (viewId: string) => {
+    setActiveView(viewId);
+  };
+  
+  const closeAllViews = () => {
+    setActiveView(null);
   };
 
   return (
@@ -101,8 +131,8 @@ export default function Home() {
                     {portfolioData.career.map((item) => (
                         <motion.div 
                           key={item.id}
-                          layoutId={item.id}
-                          onClick={() => setSelectedCareerId(item.id)}
+                          layoutId={`card-${item.id}`}
+                          onClick={() => openView(item.id)}
                           className="relative pl-6 cursor-pointer group"
                         >
                             <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-neutral-800 group-hover:bg-cyan-500 transition-colors border-2 border-background" />
@@ -117,9 +147,9 @@ export default function Home() {
 
           {portfolioData.projects.map((project, i) => (
             <motion.div
-              layoutId={project.id}
+              layoutId={`card-${project.id}`}
               key={project.id}
-              onClick={() => setSelectedProjectId(project.id)}
+              onClick={() => openView(project.id)}
               className="col-span-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -143,41 +173,41 @@ export default function Home() {
       
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95vw]">
         <div className="bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-full flex gap-6 md:gap-8 shadow-2xl items-center ring-1 ring-white/5">
-           <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={resetAll}>
+           <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={closeAllViews}>
              <Globe size={22} />
-           </motion.div>
+           </motion.button>
            
            <div className="h-6 w-[1px] bg-white/10"></div>
            
-           <motion.div 
+           <motion.button 
              whileHover={{ scale: 1.2 }}
              whileTap={{ scale: 0.9 }} 
              className="cursor-pointer relative group" 
-             onClick={toggleChat}
+             onClick={() => openView('chat')}
            >
              <div className="absolute inset-0 bg-cyan-500 rounded-full blur-lg opacity-40 animate-pulse group-hover:opacity-60 transition-opacity"></div>
-             <div className={`relative p-2 rounded-full transition-colors ${isChatOpen ? 'bg-cyan-500 text-black' : 'bg-white/10 text-cyan-400 group-hover:text-white'}`}>
+             <div className={`relative p-2 rounded-full transition-colors ${activeView === 'chat' ? 'bg-cyan-500 text-black' : 'bg-white/10 text-cyan-400 group-hover:text-white'}`}>
                  <Sparkles size={22} />
              </div>
-           </motion.div>
+           </motion.button>
 
            <div className="h-6 w-[1px] bg-white/10"></div>
 
-           <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={toggleContact}>
+           <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={() => openView('contact')}>
              <Contact size={22} />
-           </motion.div>
+           </motion.button>
         </div>
       </div>
 
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-8" onClick={() => setSelectedProjectId(null)}>
+          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-8" onClick={closeAllViews}>
             <motion.div
-              layoutId={selectedProject.id}
+              layoutId={`card-${selectedProject.id}`}
               onClick={(e) => e.stopPropagation()}
               className="w-full h-[90vh] md:h-auto md:max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-hidden shadow-2xl relative flex flex-col md:max-h-[90vh]"
             >
-              <button onClick={() => setSelectedProjectId(null)} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
+              <button onClick={closeAllViews} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
               
               <div className="flex-1 overflow-y-auto custom-scrollbar">
                 <div className="h-40 md:h-48 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 relative flex items-center justify-center">
@@ -220,13 +250,13 @@ export default function Home() {
 
       <AnimatePresence>
         {selectedCareer && (
-          <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-8" onClick={() => setSelectedCareerId(null)}>
+          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-8" onClick={closeAllViews}>
             <motion.div
-              layoutId={selectedCareer.id}
+              layoutId={`card-${selectedCareer.id}`}
               onClick={(e) => e.stopPropagation()}
               className="w-full h-[90vh] md:h-auto md:max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-hidden shadow-2xl relative flex flex-col md:max-h-[90vh]"
             >
-              <button onClick={() => setSelectedCareerId(null)} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
+              <button onClick={closeAllViews} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
 
               <div className="p-6 md:p-12 flex-1 overflow-y-auto custom-scrollbar">
                 <div className="flex items-center gap-4 mb-8">
@@ -254,11 +284,114 @@ export default function Home() {
         )}
       </AnimatePresence>
       
-      <AICore isOpen={isChatOpen} onClose={toggleChat} />
+      <AnimatePresence>
+        {activeView === 'chat' && (
+          <div className="fixed inset-0 z-40 flex items-end justify-center bg-black/80 backdrop-blur-md p-0 md:p-4 md:items-center" onClick={closeAllViews}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 50 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full h-[90vh] md:h-auto md:max-h-[80vh] md:w-full md:max-w-lg bg-[#0a0a0a]/80 backdrop-blur-xl border border-cyan-500/30 rounded-t-3xl md:rounded-3xl shadow-2xl shadow-cyan-900/20 overflow-hidden flex flex-col"
+            >
+              <div className="p-4 border-b border-white/10 flex justify-between items-center bg-cyan-950/10 shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
+                      <Terminal size={18} className="text-cyan-400" />
+                  </div>
+                  <div>
+                      <span className="block font-bold text-sm text-white">AI Twin System</span>
+                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
+                  </div>
+                </div>
+                <button onClick={closeAllViews} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-opacity-5 min-h-0">
+                {messages.length === 0 && (
+                  <div className="text-center text-neutral-500 mt-16 flex flex-col items-center px-8">
+                    <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                        <Sparkles className="w-8 h-8 text-cyan-500" />
+                    </div>
+                    <p className="text-lg font-medium text-white mb-2">System Online ⚡️</p>
+                    <div className="text-sm text-neutral-400 space-y-2">
+                        <p>I am Umar's AI Digital Twin.</p>
+                        <p>I have access to his entire neural network—from his 0-to-1 Product Management strategies to his obsession with Firebase Studio. I'm ready to deploy answers about his experience, projects, or why he thinks AI is the ultimate assistant.</p>
+                        <p>Initiate a query below! 👇</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 justify-center mt-6">
+                        <button type="button" onClick={() => handleQuickReply("Tell me about BillFlow")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"Tell me about BillFlow"</button>
+                        <button type="button" onClick={() => handleQuickReply("How can I contact him?")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How can I contact him?"</button>
+                    </div>
+                  </div>
+                )}
+                {messages.map((m, idx) => (
+                  <div key={m.id || idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-[85%] p-3.5 rounded-2xl flex gap-3 ${
+                      m.role === 'user' 
+                        ? 'bg-cyan-600 text-white rounded-br-none' 
+                        : 'bg-white/10 text-neutral-200 rounded-bl-none border border-white/5'
+                    }`}>
+                      <div className="mt-1 shrink-0 opacity-70">
+                          {m.role === 'user' ? <User size={14} /> : <Bot size={14} />}
+                      </div>
+                      <div className="leading-relaxed break-words whitespace-pre-wrap">
+                          {m.content}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {isLoading && messages[messages.length - 1]?.role === 'user' && (
+                   <div className="flex justify-start">
+                      <div className="flex gap-3 bg-white/10 text-neutral-200 rounded-2xl rounded-bl-none border border-white/5 p-3.5 max-w-[85%]">
+                        <div className="mt-1 shrink-0 opacity-70">
+                          <Bot size={14} />
+                        </div>
+                        <div className="text-neutral-400 text-sm animate-pulse">
+                            Processing Query...
+                        </div>
+                      </div>
+                   </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+
+              <form ref={formRef} onSubmit={handleFormSubmit} className="p-4 border-t border-white/10 bg-[#050505] shrink-0">
+                <div className="flex gap-2 items-end">
+                  <textarea
+                    value={input}
+                    onChange={handleInputChange}
+                    placeholder="Query the system..."
+                    rows={1}
+                    className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500/50 transition-colors placeholder:text-neutral-600 resize-none min-h-[44px] max-h-32"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        handleFormSubmit(e as any);
+                      }
+                    }}
+                  />
+                  <button 
+                    type="submit" 
+                    disabled={!input || !input.trim() || isLoading} 
+                    className="p-3 bg-cyan-500 text-black rounded-xl hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <Send size={18} />
+                  </button>
+                </div>
+                <p className="text-[10px] text-center text-neutral-600 mt-2 font-mono">AI can make mistakes. Check important info.</p>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
-        {isContactOpen && (
-          <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm" onClick={toggleContact}>
+        {activeView === 'contact' && (
+          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm" onClick={closeAllViews}>
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
