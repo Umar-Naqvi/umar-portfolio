@@ -54,9 +54,6 @@ export default function Home() {
                   >
                     <BrainCircuit className="w-full h-full" />
                   </motion.div>
-                  <a href={portfolioData.profile.resumeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-bold bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors border border-white/5 shrink-0">
-                      <Download size={14} /> Resume
-                  </a>
               </div>
               
               <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-400 mb-3 tracking-tight">
@@ -71,8 +68,8 @@ export default function Home() {
               <a href={portfolioData.profile.contact.socials.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
                 <Linkedin size={20} />
               </a>
-              <a href={portfolioData.profile.contact.socials.github} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
-                <Github size={20} />
+              <a href={portfolioData.profile.resumeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-bold bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors border border-white/5 shrink-0">
+                  <Download size={14} /> Resume
               </a>
               <a href={`mailto:${portfolioData.profile.contact.email}`} className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
                 <Mail size={20} />
@@ -297,4 +294,3 @@ export default function Home() {
     </main>
   );
 }
-
