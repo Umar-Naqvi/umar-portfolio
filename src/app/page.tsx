@@ -157,7 +157,7 @@ export default function Home() {
               transition={{ delay: i * 0.1 + 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <div className="absolute top-4 right-4 filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-50 group-hover:opacity-100">
+              <div className="absolute top-4 right-4 transition-all duration-300 opacity-80 group-hover:opacity-100">
                 {project.logoUrl && <Image src={project.logoUrl} alt={`${project.title} logo`} width={64} height={64} className="w-12 h-12 md:w-16 md:h-16 object-contain" />}
               </div>
               <div className="relative z-10">
