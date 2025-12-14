@@ -32,7 +32,7 @@ const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
 
 export async function chat(messages: CoreMessage[]) {
   return streamText({
-    model: google('models/gemini-1.5-flash'),
+    model: google('models/gemini-1.5-pro'),
     system: systemPrompt,
     messages,
   });
