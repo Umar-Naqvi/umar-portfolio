@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -156,8 +157,8 @@ export default function Home() {
               transition={{ delay: i * 0.1 + 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <div className="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-50 group-hover:opacity-100">
-                {project.logoUrl && <Image src={project.logoUrl} alt={`${project.title} logo`} layout="fill" objectFit="contain" />}
+              <div className="absolute top-4 right-4 filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-50 group-hover:opacity-100">
+                {project.logoUrl && <Image src={project.logoUrl} alt={`${project.title} logo`} width={64} height={64} className="w-12 h-12 md:w-16 md:h-16 object-contain" />}
               </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2">
@@ -215,7 +216,7 @@ export default function Home() {
                 <div className="h-40 md:h-48 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 relative flex items-center justify-center">
                    <div className="absolute -bottom-8 left-6 md:left-12 flex items-end gap-4">
                       <div className="w-16 h-16 md:w-20 md:h-20 relative filter drop-shadow-lg">
-                        {selectedProject.logoUrl && <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} layout="fill" objectFit="contain" />}
+                        {selectedProject.logoUrl && <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} width={80} height={80} className="object-contain" />}
                       </div>
                       <div className="pb-1">
                          <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedProject.title}</h2>
@@ -290,7 +291,7 @@ export default function Home() {
       
       <AnimatePresence>
         {activeView === 'chat' && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-28" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-28 md:pb-4" onClick={closeAllViews}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
