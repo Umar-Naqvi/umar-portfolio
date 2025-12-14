@@ -66,111 +66,113 @@ export default function Home() {
       <FluidBackground />
       <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 min-h-screen flex flex-col justify-start pt-8 pb-48">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          
-          <motion.div 
-            className="col-span-1 md:col-span-2 lg:col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-colors relative overflow-hidden"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="absolute -right-10 -top-10 w-48 h-48 md:w-64 md:h-64 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-colors" />
+      <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8">
+        <div className="mb-48">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             
-            <div>
-              <div className="flex justify-between items-start">
-                  <motion.div 
-                    whileHover={{ rotate: 15 }}
-                    className="mb-4 md:mb-6"
-                  >
-                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={80} height={80} className="w-20 h-20 md:w-24 md:h-24" />
-                  </motion.div>
-              </div>
-              
-              <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-400 mb-3 tracking-tight">
-                {portfolioData.profile.name}
-              </h1>
-              <p className="text-sm md:text-lg text-neutral-400 max-w-lg leading-relaxed">
-                <span className="text-cyan-400">{portfolioData.profile.role}</span>. {portfolioData.profile.bio}
-              </p>
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-3 mt-6">
-              <a href={portfolioData.profile.contact.socials.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
-                <Linkedin size={20} />
-              </a>
-              <a href={portfolioData.profile.resumeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-bold bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors border border-white/5 shrink-0">
-                  <Download size={14} /> Resume
-              </a>
-              <a href={`mailto:${portfolioData.profile.contact.email}`} className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
-                <Mail size={20} />
-              </a>
-               <div className="flex-grow"></div>
-               <div className="bg-white/5 border border-white/10 rounded-full text-xs text-neutral-300 px-4 py-2 flex items-center gap-2">
-                 <span className="relative flex h-2 w-2">
-                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                 </span>
-                 {portfolioData.profile.availability}
-               </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="col-span-1 md:col-span-2 lg:col-span-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 relative overflow-hidden flex flex-col"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-              <div className="flex items-center gap-2 mb-6 text-neutral-400">
-                  <Briefcase size={16} />
-                  <span className="text-xs font-mono uppercase tracking-wider">Career Log</span>
-              </div>
-              
-              <div className="flex-1 overflow-y-auto custom-scrollbar -mr-4 pr-4">
-                  <div className="relative flex flex-col gap-6 border-l border-white/10 ml-1">
-                    {portfolioData.career.map((item) => (
-                        <motion.div 
-                          key={item.id}
-                          layoutId={`card-${item.id}`}
-                          onClick={() => openView(item.id)}
-                          className="relative pl-6 cursor-pointer group"
-                        >
-                            <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-neutral-800 group-hover:bg-cyan-500 transition-colors border-2 border-background" />
-                            <span className="text-[10px] font-mono text-cyan-500/80 mb-1 block">{item.year}</span>
-                            <h4 className="text-sm font-bold text-white group-hover:text-cyan-100">{item.role}</h4>
-                            <p className="text-xs text-neutral-500 group-hover:text-neutral-400">{item.org}</p>
-                        </motion.div>
-                    ))}
-                  </div>
-              </div>
-          </motion.div>
-
-          {portfolioData.projects.map((project, i) => (
-            <motion.div
-              layoutId={`card-${project.id}`}
-              key={project.id}
-              onClick={() => openView(project.id)}
-              className="col-span-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1 + 0.2 }}
-              whileHover={{ y: -5 }}
+            <motion.div 
+              className="col-span-1 md:col-span-2 lg:col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-colors relative overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="absolute top-4 right-4 transition-all duration-300">
-                <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} className="w-10 h-10 md:w-12 md:h-12" />
-              </div>
-              <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className={`text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full ${project.status === 'Live App' ? 'text-green-400 border-green-900/50 bg-green-950/30' : 'text-cyan-400 border-cyan-900/50 bg-cyan-950/30'}`}>
-                    {project.status}
-                  </span>
+              <div className="absolute -right-10 -top-10 w-48 h-48 md:w-64 md:h-64 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-colors" />
+              
+              <div>
+                <div className="flex justify-between items-start">
+                    <motion.div 
+                      whileHover={{ rotate: 15 }}
+                      className="mb-4 md:mb-6"
+                    >
+                      <Image src={portfolioData.profile.logoUrl} alt="Logo" width={80} height={80} className="w-20 h-20 md:w-24 md:h-24" />
+                    </motion.div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.title}</h3>
-                <p className="text-xs text-neutral-400 line-clamp-2">{project.summary}</p>
+                
+                <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-400 mb-3 tracking-tight">
+                  {portfolioData.profile.name}
+                </h1>
+                <p className="text-sm md:text-lg text-neutral-400 max-w-lg leading-relaxed">
+                  <span className="text-cyan-400">{portfolioData.profile.role}</span>. {portfolioData.profile.bio}
+                </p>
+              </div>
+              
+              <div className="flex flex-wrap items-center gap-3 mt-6">
+                <a href={portfolioData.profile.contact.socials.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
+                  <Linkedin size={20} />
+                </a>
+                <a href={portfolioData.profile.resumeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-bold bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors border border-white/5 shrink-0">
+                    <Download size={14} /> Resume
+                </a>
+                <a href={`mailto:${portfolioData.profile.contact.email}`} className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
+                  <Mail size={20} />
+                </a>
+                 <div className="flex-grow"></div>
+                 <div className="bg-white/5 border border-white/10 rounded-full text-xs text-neutral-300 px-4 py-2 flex items-center gap-2">
+                   <span className="relative flex h-2 w-2">
+                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                   </span>
+                   {portfolioData.profile.availability}
+                 </div>
               </div>
             </motion.div>
-          ))}
+
+            <motion.div 
+              className="col-span-1 md:col-span-2 lg:col-span-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 relative overflow-hidden flex flex-col"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+                <div className="flex items-center gap-2 mb-6 text-neutral-400">
+                    <Briefcase size={16} />
+                    <span className="text-xs font-mono uppercase tracking-wider">Career Log</span>
+                </div>
+                
+                <div className="flex-1 overflow-y-auto custom-scrollbar -mr-4 pr-4">
+                    <div className="relative flex flex-col gap-6 border-l border-white/10 ml-1">
+                      {portfolioData.career.map((item) => (
+                          <motion.div 
+                            key={item.id}
+                            layoutId={`card-${item.id}`}
+                            onClick={() => openView(item.id)}
+                            className="relative pl-6 cursor-pointer group"
+                          >
+                              <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-neutral-800 group-hover:bg-cyan-500 transition-colors border-2 border-background" />
+                              <span className="text-[10px] font-mono text-cyan-500/80 mb-1 block">{item.year}</span>
+                              <h4 className="text-sm font-bold text-white group-hover:text-cyan-100">{item.role}</h4>
+                              <p className="text-xs text-neutral-500 group-hover:text-neutral-400">{item.org}</p>
+                          </motion.div>
+                      ))}
+                    </div>
+                </div>
+            </motion.div>
+
+            {portfolioData.projects.map((project, i) => (
+              <motion.div
+                layoutId={`card-${project.id}`}
+                key={project.id}
+                onClick={() => openView(project.id)}
+                className="col-span-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 + 0.2 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="absolute top-4 right-4 transition-all duration-300">
+                  <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} className="w-10 h-10 md:w-12 md:h-12" />
+                </div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={`text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full ${project.status === 'Live App' ? 'text-green-400 border-green-900/50 bg-green-950/30' : 'text-cyan-400 border-cyan-900/50 bg-cyan-950/30'}`}>
+                      {project.status}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.title}</h3>
+                  <p className="text-xs text-neutral-400 line-clamp-2">{project.summary}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
       
