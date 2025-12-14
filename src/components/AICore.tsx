@@ -67,7 +67,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-[url('/grid.svg')] bg-opacity-5 min-h-0">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-opacity-5 min-h-0">
             {messages.length === 0 && (
               <div className="text-center text-neutral-500 mt-24 flex flex-col items-center px-8">
                 <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
