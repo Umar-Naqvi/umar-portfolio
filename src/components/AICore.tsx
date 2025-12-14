@@ -1,109 +1,138 @@
+
 'use client';
 
 import { useChat } from 'ai/react';
-import { motion } from 'framer-motion';
-import { SendHorizonal, Sparkles, X, User, Bot } from 'lucide-react';
-import { useEffect, useRef } from 'react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { Sparkles, Send, X, Terminal, User, Bot } from 'lucide-react';
 
-type AICoreProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
-
-const initialMessages = [
-  {
-    id: 'initial-greeting',
-    role: 'assistant' as const,
-    content: "Hey there! I'm Umar's AI Twin. Feel free to ask me anything about his projects, skills, or career. How can I help you today? 🚀",
-  }
-];
+interface AICoreProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
 
 export default function AICore({ isOpen, onClose }: AICoreProps) {
-  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages } = useChat({
-    initialMessages,
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: '/api/chat',
-    onFinish: () => {
-      scrollToBottom();
-    }
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
-    if(!isOpen) {
-      setTimeout(() => setMessages(initialMessages), 500);
-    }
-  }, [isOpen, setMessages]);
+    scrollToBottom();
+  }, [messages]);
 
-  useEffect(scrollToBottom, [messages]);
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+    handleSubmit(e);
+  };
+
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center bg-black/80 backdrop-blur-md">
-      <motion.div
-        initial={{ y: "100%", opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: "100%", opacity: 0 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="w-full h-[85vh] md:h-auto md:max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:max-h-[80vh]"
-      >
-        <header className="flex items-center justify-between p-4 md:p-6 border-b border-white/10 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-cyan-900/50 border border-cyan-500/30 rounded-lg">
-              <Sparkles className="text-cyan-400" size={20} />
-            </div>
-            <div>
-              <h2 className="font-bold text-white">AI Twin</h2>
-              <p className="text-xs text-neutral-400">Powered by Gemini 2.5 Flash</p>
-            </div>
-          </div>
-          <Button variant="ghost" size="icon" onClick={onClose} className="text-neutral-400 hover:text-white">
-            <X size={20} />
-          </Button>
-        </header>
-
-        <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 custom-scrollbar">
-          {messages.map((m) => (
-            <div key={m.id} className={`flex items-start gap-3 w-full ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-              {m.role !== 'user' && (
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center shrink-0">
-                  <Bot size={18} className="text-black"/>
-                </div>
-              )}
-              <div className={`p-3 rounded-2xl max-w-sm md:max-w-md break-words ${m.role === 'user' ? 'bg-white/10' : 'bg-transparent'}`}>
-                <p className="text-sm text-neutral-200 leading-relaxed whitespace-pre-wrap">{m.content}</p>
+    <AnimatePresence>
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-0 md:p-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          className="w-full h-full md:h-[650px] md:w-[500px] md:rounded-3xl bg-[#0a0a0a] border border-cyan-500/30 shadow-2xl shadow-cyan-900/20 overflow-hidden flex flex-col"
+        >
+          {/* Header */}
+          <div className="p-4 border-b border-white/10 flex justify-between items-center bg-cyan-950/10">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
+                  <Terminal size={18} className="text-cyan-400" />
               </div>
-               {m.role === 'user' && (
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                  <User size={18} />
-                </div>
-              )}
+              <div>
+                  <span className="block font-bold text-sm text-white">AI Twin System</span>
+                  <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
+              </div>
             </div>
-          ))}
-           <div ref={messagesEndRef} />
-        </div>
+            <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
+              <X size={20} />
+            </button>
+          </div>
 
-        <footer className="p-4 md:p-6 border-t border-white/10 shrink-0">
-          <form onSubmit={handleSubmit} className="flex items-center gap-3">
-            <Input
-              value={input}
-              onChange={handleInputChange}
-              placeholder="Ask about projects, skills, contact..."
-              className="bg-black/40 border-white/10 h-12 focus-visible:ring-cyan-500"
-              disabled={isLoading}
-            />
-            <Button type="submit" size="icon" className="h-12 w-12 bg-cyan-500 hover:bg-cyan-400 text-black shrink-0" disabled={isLoading || !input.trim()}>
-              <SendHorizonal size={20} />
-            </Button>
+          {/* Messages Area */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-[url('/grid.svg')] bg-opacity-5">
+            {messages.length === 0 && (
+              <div className="text-center text-neutral-500 mt-24 flex flex-col items-center px-8">
+                <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                    <Sparkles className="w-8 h-8 text-cyan-500" />
+                </div>
+                <p className="text-lg font-medium text-white mb-2">System Initialized</p>
+                <p className="text-sm text-neutral-400">Ask about experience, project details, or request contact info.</p>
+                <div className="flex flex-wrap gap-2 justify-center mt-6">
+                    <button onClick={() => handleInputChange({ target: { value: "Tell me about BillFlow" } } as any)} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"Tell me about BillFlow"</button>
+                    <button onClick={() => handleInputChange({ target: { value: "How can I contact him?" } } as any)} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How can I contact him?"</button>
+                </div>
+              </div>
+            )}
+            {messages.map((m, idx) => (
+              <div key={m.id || idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[85%] p-3.5 rounded-2xl flex gap-3 ${
+                  m.role === 'user' 
+                    ? 'bg-cyan-600 text-white rounded-br-none' 
+                    : 'bg-white/10 text-neutral-200 rounded-bl-none border border-white/5'
+                }`}>
+                  <div className="mt-1 shrink-0 opacity-70">
+                      {m.role === 'user' ? <User size={14} /> : <Bot size={14} />}
+                  </div>
+                  <div className="leading-relaxed whitespace-pre-wrap">
+                      {m.content}
+                  </div>
+                </div>
+              </div>
+            ))}
+            {isLoading && messages[messages.length - 1]?.role === 'user' && (
+               <div className="flex justify-start">
+                  <div className="flex gap-3 bg-white/10 text-neutral-200 rounded-2xl rounded-bl-none border border-white/5 p-3.5 max-w-[85%]">
+                    <div className="mt-1 shrink-0 opacity-70">
+                      <Bot size={14} />
+                    </div>
+                    <div className="text-neutral-400 text-sm animate-pulse">
+                        Processing Query...
+                    </div>
+                  </div>
+               </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input Area */}
+          <form onSubmit={handleFormSubmit} className="p-4 border-t border-white/10 bg-[#050505]">
+            <div className="flex gap-2 items-end">
+              <textarea
+                value={input}
+                onChange={handleInputChange}
+                placeholder="Query the system..."
+                rows={1}
+                className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500/50 transition-colors placeholder:text-neutral-600 resize-none min-h-[44px] max-h-32"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleFormSubmit(e as any);
+                  }
+                }}
+              />
+              <button 
+                type="submit" 
+                disabled={!input || !input.trim() || isLoading} 
+                className="p-3 bg-cyan-500 text-black rounded-xl hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Send size={18} />
+              </button>
+            </div>
+            <p className="text-[10px] text-center text-neutral-600 mt-2 font-mono">AI can make mistakes. Check important info.</p>
           </form>
-        </footer>
-      </motion.div>
-    </div>
+        </motion.div>
+      </div>
+    </AnimatePresence>
   );
 }
