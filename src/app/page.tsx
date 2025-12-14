@@ -312,14 +312,13 @@ export default function Home() {
 
               <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-opacity-5 min-h-0">
                 {messages.length === 0 && (
-                  <div className="text-center text-neutral-500 mt-16 flex flex-col items-center px-8">
+                  <div className="h-full flex flex-col justify-center items-center text-center text-neutral-500 px-4">
                     <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
                         <Sparkles className="w-8 h-8 text-cyan-500" />
                     </div>
                     <p className="text-lg font-medium text-white mb-2">System Online ⚡️</p>
-                    <div className="text-sm text-neutral-400 space-y-2">
-                        <p>I am Umar's AI Digital Twin.</p>
-                        <p>I have access to his entire neural network—from his 0-to-1 Product Management strategies to his obsession with Firebase Studio. I'm ready to deploy answers about his experience, projects, or why he thinks AI is the ultimate assistant.</p>
+                    <div className="text-sm text-neutral-400 space-y-2 max-w-sm">
+                        <p>I am Umar's AI Digital Twin. I have access to his entire neural network—from his 0-to-1 Product Management strategies to his obsession with Firebase Studio.</p>
                         <p>Initiate a query below! 👇</p>
                     </div>
                     <div className="flex flex-wrap gap-2 justify-center mt-6">
@@ -338,7 +337,7 @@ export default function Home() {
                       <div className="mt-1 shrink-0 opacity-70">
                           {m.role === 'user' ? <User size={14} /> : <Bot size={14} />}
                       </div>
-                      <div className="leading-relaxed break-words">
+                      <div className="leading-relaxed break-words whitespace-pre-wrap">
                           {m.content}
                       </div>
                     </div>
@@ -434,3 +433,5 @@ export default function Home() {
     </main>
   );
 }
+
+    
