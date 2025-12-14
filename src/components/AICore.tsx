@@ -12,7 +12,7 @@ interface AICoreProps {
 }
 
 export default function AICore({ isOpen, onClose }: AICoreProps) {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
     api: '/api/chat',
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -30,6 +30,14 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
     if (!input.trim() || isLoading) return;
     handleSubmit(e);
   };
+  
+  const handleQuickReply = (e: React.MouseEvent<HTMLButtonElement>, question: string) => {
+    e.preventDefault();
+    setInput(question);
+    // Create a synthetic event to submit the form with the new input value
+    const syntheticEvent = new Event('submit', { bubbles: true, cancelable: true });
+    (e.target as HTMLButtonElement).closest('form')?.dispatchEvent(syntheticEvent)
+  }
 
   if (!isOpen) return null;
 
@@ -59,7 +67,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-[url('/grid.svg')] bg-opacity-5 min-h-0">
+          <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-[url('/grid.svg')] bg-opacity-5 min-h-0">
             {messages.length === 0 && (
               <div className="text-center text-neutral-500 mt-24 flex flex-col items-center px-8">
                 <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
@@ -68,8 +76,8 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
                 <p className="text-lg font-medium text-white mb-2">System Initialized</p>
                 <p className="text-sm text-neutral-400">Ask about experience, project details, or request contact info.</p>
                 <div className="flex flex-wrap gap-2 justify-center mt-6">
-                    <button onClick={() => handleInputChange({ target: { value: "Tell me about BillFlow" } } as any)} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"Tell me about BillFlow"</button>
-                    <button onClick={() => handleInputChange({ target: { value: "How can I contact him?" } } as any)} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How can I contact him?"</button>
+                    <button onClick={(e) => handleQuickReply(e, "Tell me about BillFlow")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"Tell me about BillFlow"</button>
+                    <button onClick={(e) => handleQuickReply(e, "How can I contact him?")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How can I contact him?"</button>
                 </div>
               </div>
             )}
@@ -102,7 +110,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
                </div>
             )}
             <div ref={messagesEndRef} />
-          </div>
+          </form>
 
           {/* Input Area */}
           <form onSubmit={handleFormSubmit} className="p-4 border-t border-white/10 bg-[#050505] shrink-0">
