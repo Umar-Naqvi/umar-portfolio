@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Mohammed Umar Ben Naqvi | AI Product Manager',
+  title: 'Portfolio | Mohammed Umar Ben Naqvi | AI Product Manager',
   description: 'AI-First Product Manager & Developer building the future, 0-to-1.',
 };
 
