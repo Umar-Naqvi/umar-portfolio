@@ -61,7 +61,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
               </div>
               <div>
                   <span className="block font-bold text-sm text-white">AI Twin System</span>
-                  <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-PRO</span>
+                  <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
               </div>
             </div>
             <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
@@ -94,7 +94,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
                   <div className="mt-1 shrink-0 opacity-70">
                       {m.role === 'user' ? <User size={14} /> : <Bot size={14} />}
                   </div>
-                  <div className="leading-relaxed whitespace-pre-wrap">
+                  <div className="leading-relaxed break-words">
                       {m.content}
                   </div>
                 </div>
