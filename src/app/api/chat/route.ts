@@ -1,3 +1,4 @@
+
 import {chat} from '@/ai/flows/chat';
 import {type CoreMessage, StreamingTextResponse} from 'ai';
 
@@ -9,7 +10,6 @@ export async function POST(req: Request) {
 
   try {
     const stream = await chat(messages);
-    // Use the standard StreamingTextResponse to send the stream back to the client.
     return new StreamingTextResponse(stream);
   } catch (error: any) {
     console.error('[API_CHAT_ERROR]', error);

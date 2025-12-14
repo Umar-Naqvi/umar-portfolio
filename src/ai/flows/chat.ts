@@ -1,9 +1,13 @@
+
 'use server';
 
 import { portfolioData } from '@/lib/data';
-import { CoreMessage } from 'ai';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import { GoogleGenerativeAIStream } from '@ai-sdk/google';
+import { CoreMessage, streamText } from 'ai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GEMINI_API_KEY,
+});
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
@@ -25,39 +29,11 @@ const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
   `;
 
 export async function chat(messages: CoreMessage[]) {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    throw new Error('GEMINI_API_KEY is not set in the environment variables.');
-  }
-
-  const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
-
-  // Reformat messages for the Google Generative AI SDK
-  const googleMessages = messages.map(message => ({
-    role: message.role === 'user' ? 'user' : 'model',
-    parts: [{ text: message.content as string }],
-  }));
-
-  // Remove the last message if it's from the user, as it's the new prompt
-  const lastMessage = googleMessages.pop();
-  if (!lastMessage || lastMessage.role !== 'user') {
-    throw new Error('Last message must be from the user.');
-  }
-  
-  const history = googleMessages;
-  const prompt = lastMessage.parts[0].text;
-  
-  const chatSession = model.startChat({
-    history: [
-      { role: 'user', parts: [{ text: systemPrompt }] },
-      { role: 'model', parts: [{ text: "System instructions understood. I am ready to answer questions about Mohammed Umar Ben Naqvi. 🚀" }]},
-      ...history
-    ]
+  const result = await streamText({
+    model: google('models/gemini-2.5-flash'),
+    system: systemPrompt,
+    messages,
   });
 
-  const result = await chatSession.sendMessageStream(prompt);
-  
-  // Convert the response into a friendly text-stream
-  return GoogleGenerativeAIStream(result);
+  return result.toAIStream();
 }
