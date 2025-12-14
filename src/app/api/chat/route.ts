@@ -1,3 +1,5 @@
+'use server';
+
 import {Message, streamToResponse} from 'ai';
 import {chat} from '@/ai/flows/chat';
 import {runFlow} from '@genkit-ai/next/server';
