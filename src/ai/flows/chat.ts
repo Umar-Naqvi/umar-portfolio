@@ -5,10 +5,6 @@ import {CoreMessage} from 'ai';
 import {createGoogleGenerativeAI} from '@ai-sdk/google';
 import {streamText} from 'ai';
 
-const google = createGoogleGenerativeAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
-
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
     CORE PERSONALITY:
@@ -31,6 +27,12 @@ const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
   `;
 
 export async function chat(messages: CoreMessage[]) {
+  // Initialize the Google AI client inside the function
+  // to ensure the environment variable is read at runtime.
+  const google = createGoogleGenerativeAI({
+    apiKey: process.env.GEMINI_API_KEY,
+  });
+
   return streamText({
     model: google('models/gemini-1.5-pro'),
     system: systemPrompt,
