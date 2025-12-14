@@ -1,4 +1,6 @@
 
+import { Rocket, FileText, Bot } from 'lucide-react';
+
 export const portfolioData = {
   profile: {
     name: "Mohammed Umar Ben Naqvi",
@@ -59,7 +61,7 @@ export const portfolioData = {
     {
       id: "billflow",
       title: "BillFlow",
-      logoUrl: "/billflow.png",
+      icon: Rocket,
       category: "SaaS Platform",
       status: "Live App",
       type: "app", 
@@ -76,7 +78,7 @@ export const portfolioData = {
     {
       id: "dukaanbill",
       title: "DukaanBill",
-      logoUrl: "/dukaanbill.png",
+      icon: FileText,
       category: "Offline PWA",
       status: "Case Study",
       type: "slides",
@@ -93,7 +95,7 @@ export const portfolioData = {
     {
       id: "notevault",
       title: "NoteVault",
-      logoUrl: "/notevault.png",
+      icon: Bot,
       category: "AI EdTech",
       status: "Case Study",
       type: "slides",

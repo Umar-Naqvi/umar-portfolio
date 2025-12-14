@@ -10,7 +10,7 @@ import {
     Github, Linkedin, Mail, Phone, ExternalLink, X, 
     Rocket, Globe, Sparkles, 
     Contact, Cpu, Download, GraduationCap, Briefcase,
-    Send, Terminal, User, Bot
+    Send, Terminal, User, Bot, FileText, Zap
 } from 'lucide-react';
 import FluidBackground from '@/components/FluidBackground';
 
@@ -81,9 +81,9 @@ export default function Home() {
               <div className="flex justify-between items-start">
                   <motion.div 
                     whileHover={{ rotate: 15 }}
-                    className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6 text-cyan-400 bg-white/5 rounded-2xl p-2 md:p-3 border border-white/10"
+                    className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6 text-cyan-400 bg-white/5 rounded-2xl p-3 md:p-4 border border-white/10"
                   >
-                    <Image src="/logo.png" alt="logo" width={64} height={64} />
+                    <Zap size="100%"/>
                   </motion.div>
               </div>
               
@@ -157,8 +157,8 @@ export default function Home() {
               transition={{ delay: i * 0.1 + 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <div className="absolute top-4 right-4 transition-all duration-300 opacity-80 group-hover:opacity-100">
-                {project.logoUrl && <Image src={project.logoUrl} alt={`${project.title} logo`} width={64} height={64} className="w-12 h-12 md:w-16 md:h-16 object-contain" />}
+              <div className="absolute top-4 right-4 text-cyan-400 transition-all duration-300 opacity-80 group-hover:opacity-100">
+                {project.icon && <project.icon size={48} />}
               </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2">
@@ -215,8 +215,8 @@ export default function Home() {
               <div className="flex-1 overflow-y-auto custom-scrollbar">
                 <div className="h-40 md:h-48 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 relative flex items-center justify-center">
                    <div className="absolute -bottom-8 left-6 md:left-12 flex items-end gap-4">
-                      <div className="w-16 h-16 md:w-20 md:h-20 relative filter drop-shadow-lg">
-                        {selectedProject.logoUrl && <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} width={80} height={80} className="object-contain" />}
+                      <div className="w-16 h-16 md:w-20 md:h-20 p-2 flex items-center justify-center text-cyan-400 bg-black/30 rounded-2xl border border-white/10 filter drop-shadow-lg">
+                        {selectedProject.icon && <selectedProject.icon size="100%" />}
                       </div>
                       <div className="pb-1">
                          <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedProject.title}</h2>
@@ -307,7 +307,7 @@ export default function Home() {
                   </div>
                   <div>
                       <span className="block font-bold text-sm text-white">AI Twin System</span>
-                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
+                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
                   </div>
                 </div>
                 <button onClick={closeAllViews} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
