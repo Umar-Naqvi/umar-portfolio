@@ -206,7 +206,7 @@ export default function Home() {
 
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-4 pt-16 md:p-8 pb-28 md:pb-8" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-4 pt-16 pb-28" onClick={closeAllViews}>
             <motion.div
               layoutId={`card-${selectedProject.id}`}
               onClick={(e) => e.stopPropagation()}
@@ -257,7 +257,7 @@ export default function Home() {
 
       <AnimatePresence>
         {selectedCareer && (
-          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-4 pt-16 md:p-8 pb-28 md:pb-8" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-4 pt-16 pb-28" onClick={closeAllViews}>
             <motion.div
               layoutId={`card-${selectedCareer.id}`}
               onClick={(e) => e.stopPropagation()}
@@ -293,7 +293,7 @@ export default function Home() {
       
       <AnimatePresence>
         {activeView === 'chat' && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-28 md:pb-4" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-28" onClick={closeAllViews}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -397,7 +397,7 @@ export default function Home() {
 
       <AnimatePresence>
         {activeView === 'contact' && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-sm pb-24 md:pb-0" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-sm pb-24" onClick={closeAllViews}>
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
