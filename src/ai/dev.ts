@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
+import {config} from 'dotenv';
 config();
 
-import '@/ai/flows/summarize-project-details.ts';
-import '@/ai/flows/chat.ts';
+import '@/ai/flows/chat';
+import '@/ai/flows/summarize-project-details';

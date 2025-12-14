@@ -3,8 +3,8 @@
 import {ai} from '@/ai/genkit';
 import {portfolioData} from '@/lib/data';
 import {generate} from 'genkit';
-import {Message, toGenkitMessage, CoreMessage} from 'ai';
-import {StreamData, streamToResponse, readableFromAsyncIterable} from 'ai';
+import {Message, toGenkitMessage} from 'ai';
+import {readableFromAsyncIterable} from 'ai';
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
@@ -25,6 +25,9 @@ const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
   `;
 
 export async function chat(messages: Message[]) {
+  // For debugging: Check if the API key is loaded.
+  console.log("Current Key:", process.env.GEMINI_API_KEY ? "Loaded" : "Undefined");
+  
   const history = (messages ?? []).map(toGenkitMessage);
   const system = {role: 'system' as const, content: [{text: systemPrompt}]};
 
@@ -34,7 +37,5 @@ export async function chat(messages: Message[]) {
     stream: true,
   });
 
-  const stream = readableFromAsyncIterable(response.streamText());
-
-  return stream;
+  return readableFromAsyncIterable(response.streamText());
 }
