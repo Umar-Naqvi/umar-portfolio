@@ -10,7 +10,7 @@ import {
     Github, Linkedin, Mail, Phone, ExternalLink, X, 
     Rocket, Globe, Sparkles, 
     Contact, Cpu, Download, GraduationCap, Briefcase,
-    Send, Terminal, User, Bot, FileText, Zap
+    Send, Terminal, User, Bot, FileText
 } from 'lucide-react';
 import FluidBackground from '@/components/FluidBackground';
 
@@ -157,7 +157,7 @@ export default function Home() {
               transition={{ delay: i * 0.1 + 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <div className="absolute top-4 right-4 text-cyan-400 transition-all duration-300 opacity-80 group-hover:opacity-100">
+              <div className="absolute top-4 right-4 text-cyan-400 transition-all duration-300">
                 <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} />
               </div>
               <div className="relative z-10">
@@ -317,20 +317,20 @@ export default function Home() {
 
               <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-opacity-5 min-h-0">
                 {messages.length === 0 && (
-                  <div className="h-full flex flex-col justify-center items-center text-center text-neutral-500 p-4">
-                    <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
-                        <Sparkles className="w-8 h-8 text-cyan-500" />
-                    </div>
-                    <p className="text-lg font-medium text-white mb-2">System Online ⚡️</p>
-                    <div className="text-sm text-neutral-400 space-y-2 max-w-sm">
-                        <p>I am Umar's AI Digital Twin. I have access to his entire neural network—from his 0-to-1 Product Management strategies to his obsession with Firebase Studio.</p>
-                        <p>Initiate a query below! 👇</p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 justify-center mt-6">
-                        <button type="button" onClick={() => handleQuickReply("Tell me about BillFlow")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"Tell me about BillFlow"</button>
-                        <button type="button" onClick={() => handleQuickReply("How can I contact him?")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How can I contact him?"</button>
-                    </div>
-                  </div>
+                   <div className="h-full flex flex-col justify-center items-center text-center text-neutral-500 p-4">
+                     <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                         <Sparkles className="w-8 h-8 text-cyan-500" />
+                     </div>
+                     <p className="text-lg font-medium text-white mb-2">System Online ⚡️</p>
+                     <div className="text-sm text-neutral-400 space-y-2 max-w-sm">
+                         <p>I am Umar's AI Digital Twin. I have access to his entire neural network—from his 0-to-1 Product Management strategies to his obsession with Firebase Studio.</p>
+                         <p>Initiate a query below! 👇</p>
+                     </div>
+                     <div className="flex flex-wrap gap-2 justify-center mt-6">
+                         <button type="button" onClick={() => handleQuickReply("Tell me about BillFlow")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"Tell me about BillFlow"</button>
+                         <button type="button" onClick={() => handleQuickReply("How can I contact him?")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How can I contact him?"</button>
+                     </div>
+                   </div>
                 )}
                 {messages.map((m, idx) => (
                   <div key={m.id || idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
