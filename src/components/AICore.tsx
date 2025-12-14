@@ -13,6 +13,9 @@ interface AICoreProps {
 export default function AICore({ isOpen, onClose }: AICoreProps) {
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
     api: '/api/chat',
+    onError: (error) => {
+      console.error("Chat Error:", error);
+    }
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);

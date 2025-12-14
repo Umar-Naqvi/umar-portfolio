@@ -4,7 +4,6 @@ import { portfolioData } from '@/lib/data';
 import { CoreMessage } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
