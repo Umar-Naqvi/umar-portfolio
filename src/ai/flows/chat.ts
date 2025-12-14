@@ -32,7 +32,7 @@ export async function chat(messages: Message[]) {
   const system = {role: 'system' as const, content: [{text: systemPrompt}]};
 
   const response = await generate({
-    model: 'gemini-1.5-flash-latest',
+    model: 'gemini-1.5-flash',
     history: [system, ...history],
     stream: true,
   });
