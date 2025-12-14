@@ -201,13 +201,13 @@ export default function Home() {
 
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-8 pb-28 md:pb-8" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-4 pt-16 md:p-8 pb-28 md:pb-8" onClick={closeAllViews}>
             <motion.div
               layoutId={`card-${selectedProject.id}`}
               onClick={(e) => e.stopPropagation()}
-              className="w-full h-[90vh] md:h-auto md:max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-hidden shadow-2xl relative flex flex-col md:max-h-[90vh]"
+              className="w-full md:max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]"
             >
-              <button onClick={closeAllViews} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
+              <button onClick={closeAllViews} className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
               
               <div className="flex-1 overflow-y-auto custom-scrollbar">
                 <div className="h-40 md:h-48 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 relative flex items-center justify-center">
@@ -250,13 +250,13 @@ export default function Home() {
 
       <AnimatePresence>
         {selectedCareer && (
-          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-8 pb-28 md:pb-8" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-4 pt-16 md:p-8 pb-28 md:pb-8" onClick={closeAllViews}>
             <motion.div
               layoutId={`card-${selectedCareer.id}`}
               onClick={(e) => e.stopPropagation()}
-              className="w-full h-[90vh] md:h-auto md:max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-hidden shadow-2xl relative flex flex-col md:max-h-[90vh]"
+              className="w-full md:max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]"
             >
-              <button onClick={closeAllViews} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
+              <button onClick={closeAllViews} className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
 
               <div className="p-6 md:p-12 flex-1 overflow-y-auto custom-scrollbar">
                 <div className="flex items-center gap-4 mb-8">
@@ -286,14 +286,14 @@ export default function Home() {
       
       <AnimatePresence>
         {activeView === 'chat' && (
-          <div className="fixed inset-0 z-40 flex items-end justify-center bg-black/80 backdrop-blur-md p-0 md:p-4 md:items-center pb-28 md:pb-4" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-24" onClick={closeAllViews}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 50 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full h-[90vh] md:h-auto md:max-h-[80vh] md:w-full md:max-w-lg bg-[#0a0a0a]/80 backdrop-blur-xl border border-cyan-500/30 rounded-t-3xl md:rounded-3xl shadow-2xl shadow-cyan-900/20 overflow-hidden flex flex-col"
+              className="w-full md:max-w-lg bg-[#0a0a0a]/80 backdrop-blur-xl border border-cyan-500/30 rounded-3xl shadow-2xl shadow-cyan-900/20 overflow-hidden flex flex-col max-h-[85vh] h-full"
             >
               <div className="p-4 border-b border-white/10 flex justify-between items-center bg-cyan-950/10 shrink-0">
                 <div className="flex items-center gap-3">
@@ -391,14 +391,14 @@ export default function Home() {
 
       <AnimatePresence>
         {activeView === 'contact' && (
-          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm pb-28 md:pb-0" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-sm pb-24 md:pb-0" onClick={closeAllViews}>
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{type: 'spring', stiffness: 300, damping: 25}}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-sm bg-[#0a0a0a] border border-white/10 rounded-t-3xl md:rounded-3xl p-8 m-4 shadow-2xl relative"
+              className="w-full max-w-sm bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 m-4 shadow-2xl relative"
             >
               <h3 className="text-xl font-bold mb-1">Quick Contact</h3>
               <p className="text-neutral-400 text-sm mb-6">Let's build something great together.</p>
