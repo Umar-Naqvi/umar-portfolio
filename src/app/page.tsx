@@ -7,7 +7,7 @@ import { portfolioData } from '@/lib/data';
 import { 
     Github, Linkedin, Mail, Phone, ExternalLink, X, 
     BrainCircuit, FileText, Rocket, Globe, Sparkles, 
-    Zap, Cpu, Download, GraduationCap, Briefcase
+    Contact, Cpu, Download, GraduationCap, Briefcase
 } from 'lucide-react';
 import AICore from '@/components/AICore';
 import FluidBackground from '@/components/FluidBackground';
@@ -164,7 +164,7 @@ export default function Home() {
            <div className="h-6 w-[1px] bg-white/10"></div>
 
            <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={toggleContact}>
-             <Zap size={22} />
+             <Contact size={22} />
            </motion.div>
         </div>
       </div>
@@ -196,7 +196,7 @@ export default function Home() {
                   <p className="text-base md:text-lg text-neutral-300 mb-8 leading-relaxed max-w-3xl">{selectedProject.description}</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                      <div className="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/5">
-                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Zap size={14} /> Key Metrics</h4>
+                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Contact size={14} /> Key Metrics</h4>
                         <ul className="space-y-3">
                           {selectedProject.metrics.map((m, i) => (<li key={i} className="text-sm text-neutral-300 flex items-center gap-3"><div className="w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>{m}</li>))}
                         </ul>
@@ -283,6 +283,13 @@ export default function Home() {
                    <div>
                      <span className="text-xs text-neutral-400">Phone</span>
                      <p className="text-sm font-medium">{portfolioData.profile.contact.phone}</p>
+                   </div>
+                 </a>
+                 <a href={portfolioData.profile.contact.socials.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-cyan-500/50 transition-colors">
+                   <Linkedin size={20} className="text-cyan-400"/>
+                   <div>
+                     <span className="text-xs text-neutral-400">LinkedIn</span>
+                     <p className="text-sm font-medium">Connect with me</p>
                    </div>
                  </a>
               </div>
