@@ -1,6 +1,4 @@
 
-import { Rocket, FileText, Bot } from 'lucide-react';
-
 export const portfolioData = {
   profile: {
     name: "Mohammed Umar Ben Naqvi",
@@ -9,6 +7,7 @@ export const portfolioData = {
     location: "Vijayapura, Karnataka, India",
     availability: "Open to Full-time AI PM roles.",
     resumeUrl: "https://drive.google.com/file/d/1XxeoS25bzpdZKMU468-HXprnc6RtIIA0/view?usp=drive_link",
+    logoUrl: "/logo.png",
     contact: {
       email: "mdumarnaqvi4@gmail.com",
       phone: "+91 73491 08925",
@@ -61,7 +60,7 @@ export const portfolioData = {
     {
       id: "billflow",
       title: "BillFlow",
-      icon: Rocket,
+      logoUrl: "/billflow.png",
       category: "SaaS Platform",
       status: "Live App",
       type: "app", 
@@ -78,7 +77,7 @@ export const portfolioData = {
     {
       id: "dukaanbill",
       title: "DukaanBill",
-      icon: FileText,
+      logoUrl: "/dukaanbill.png",
       category: "Offline PWA",
       status: "Case Study",
       type: "slides",
@@ -95,7 +94,7 @@ export const portfolioData = {
     {
       id: "notevault",
       title: "NoteVault",
-      icon: Bot,
+      logoUrl: "/notevault.png",
       category: "AI EdTech",
       status: "Case Study",
       type: "slides",
