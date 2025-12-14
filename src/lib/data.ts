@@ -6,7 +6,7 @@ export const portfolioData = {
     tagline: "Building the Future, 0-to-1.",
     location: "Vijayapura, Karnataka, India",
     availability: "Open to Full-time AI PM roles.",
-    resumeUrl: "https://drive.google.com/file/d/1XxeoS25bzpdZKMU468-HXprnc6RtIIA0/view?usp=drivesdk",
+    resumeUrl: "https://drive.google.com/file/d/1XxeoS25bzpdZKMU468-HXprnc6RtIIA0/view?usp=drive_link",
     contact: {
       email: "mdumarnaqvi4@gmail.com",
       phone: "+91 73491 08925",
