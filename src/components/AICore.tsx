@@ -12,8 +12,17 @@ type AICoreProps = {
   onClose: () => void;
 };
 
+const initialMessages = [
+  {
+    id: 'initial-greeting',
+    role: 'assistant' as const,
+    content: "Hey there! I'm Umar's AI Twin. Feel free to ask me anything about his projects, skills, or career. How can I help you today? 🚀",
+  }
+];
+
 export default function AICore({ isOpen, onClose }: AICoreProps) {
   const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages } = useChat({
+    initialMessages,
     onFinish: () => {
       scrollToBottom();
     }
@@ -25,9 +34,8 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
   };
 
   useEffect(() => {
-    if(isOpen) {
-      // Clear messages when opening the chat
-      // setMessages([]); 
+    if(!isOpen) {
+      setTimeout(() => setMessages(initialMessages), 500);
     }
   }, [isOpen, setMessages]);
 
@@ -65,12 +73,6 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
         </header>
 
         <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 custom-scrollbar">
-          {messages.length === 0 && (
-             <div className="text-center text-neutral-400 text-sm flex flex-col items-center gap-4 h-full justify-center">
-               <Sparkles size={32} className="text-cyan-500/50"/>
-               <p>Ask me anything about Mohammed Umar's career, projects, or skills!</p>
-             </div>
-          )}
           {messages.map((m) => (
             <div key={m.id} className={`flex items-start gap-3 w-full ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {m.role !== 'user' && (

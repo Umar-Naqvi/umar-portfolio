@@ -5,6 +5,9 @@ import { portfolioData } from '@/lib/data';
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
+// Force the route to be dynamic
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
