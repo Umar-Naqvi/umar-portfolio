@@ -1,10 +1,9 @@
 'use server';
 
-import {ai} from '@/ai/genkit';
-import {portfolioData} from '@/lib/data';
-import {generate} from 'genkit';
-import {Message, toGenkitMessage} from 'ai';
-import {readableFromAsyncIterable} from 'ai';
+import { model } from '@/lib/gemini';
+import { portfolioData } from '@/lib/data';
+import { Message } from 'ai';
+import { GoogleGenerativeAIStream, Message as GoogleMessage } from 'ai';
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
@@ -25,17 +24,31 @@ const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
   `;
 
 export async function chat(messages: Message[]) {
-  // For debugging: Check if the API key is loaded.
-  console.log("Current Key:", process.env.GEMINI_API_KEY ? "Loaded" : "Undefined");
-  
-  const history = (messages ?? []).map(toGenkitMessage);
-  const system = {role: 'system' as const, content: [{text: systemPrompt}]};
+  const history = messages.map(
+    (message) =>
+      ({
+        role: message.role,
+        parts: [{ text: message.content }],
+      } as GoogleMessage)
+  );
 
-  const response = await generate({
-    model: 'gemini-1.5-flash',
-    history: [system, ...history],
-    stream: true,
+  const result = await model.generateContentStream({
+    contents: [
+      {
+        role: 'user',
+        parts: [{ text: systemPrompt }],
+      },
+      {
+        role: 'model',
+        parts: [
+          {
+            text: 'System instructions understood. I am ready to answer questions about Mohammed Umar Ben Naqvi. 🚀',
+          },
+        ],
+      },
+      ...history,
+    ],
   });
 
-  return readableFromAsyncIterable(response.streamText());
+  return GoogleGenerativeAIStream(result);
 }
