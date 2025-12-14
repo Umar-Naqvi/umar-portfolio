@@ -4,8 +4,6 @@ import { portfolioData } from '@/lib/data';
 import { CoreMessage } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText } from 'ai';
-
-// Load dotenv to ensure environment variables are available
 import 'dotenv/config';
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
@@ -28,11 +26,16 @@ const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
   `;
 
 export async function chat(messages: CoreMessage[]) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    // This will cause the 500 error and log a clear message on the server.
+    throw new Error('GEMINI_API_KEY is not set in the environment variables.');
+  }
+  
   // IMPORTANT: Initialize the Google AI client *inside* the function
   // to ensure the environment variable is read at runtime on the server.
   const google = createGoogleGenerativeAI({
-    // The API key is now read securely on the server
-    apiKey: process.env.GEMINI_API_KEY,
+    apiKey: apiKey,
   });
 
   return streamText({
