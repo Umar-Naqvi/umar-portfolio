@@ -35,7 +35,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
     setInput(question);
     // Use a timeout to allow React to update the input state before submitting
     setTimeout(() => {
-      formRef.current?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+      formRef.current?.requestSubmit();
     }, 0);
   }
 
