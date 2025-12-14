@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useChat } from 'ai/react';
@@ -13,7 +12,7 @@ interface AICoreProps {
 
 export default function AICore({ isOpen, onClose }: AICoreProps) {
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: '/api/flow/chat',
+    api: '/api/chat',
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 

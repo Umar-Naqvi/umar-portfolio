@@ -4,8 +4,7 @@ import {ai} from '@/ai/genkit';
 import {portfolioData} from '@/lib/data';
 import {generate} from 'genkit';
 import {Message, toGenkitMessage} from 'ai';
-import { onFlow } from '@genkit-ai/next/server';
-
+import {ReadableStream} from 'stream/web';
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
@@ -25,23 +24,18 @@ const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     5. Keep responses under 3 sentences unless asked for a deep dive.
   `;
 
-export const chat = onFlow(
-  {
-    name: 'chat',
-  },
-  async (messages: Message[]) => {
-    const history = messages.map(toGenkitMessage);
-    const system = {role: 'system' as const, content: [{text: systemPrompt}]};
-    
-    const response = await generate({
-      model: 'gemini-1.5-flash-latest',
-      history: [system, ...history],
-      config: {
-        temperature: 0.8,
-      },
-      stream: true
-    });
+export async function chat(messages: Message[]): Promise<ReadableStream<any>> {
+  const history = messages.map(toGenkitMessage);
+  const system = {role: 'system' as const, content: [{text: systemPrompt}]};
 
-    return response.streamText();
-  }
-);
+  const response = await generate({
+    model: 'gemini-1.5-flash-latest',
+    history: [system, ...history],
+    config: {
+      temperature: 0.8,
+    },
+    stream: true,
+  });
+
+  return response.streamText();
+}
