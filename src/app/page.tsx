@@ -83,7 +83,7 @@ export default function Home() {
                     whileHover={{ rotate: 15 }}
                     className="mb-4 md:mb-6"
                   >
-                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={64} height={64} className="w-12 h-12 md:w-16 md:h-16" />
+                    <Image src={portfolioData.profile.logoUrl} alt="Logo" width={80} height={80} className="w-20 h-20 md:w-24 md:h-24" />
                   </motion.div>
               </div>
               
@@ -215,7 +215,7 @@ export default function Home() {
               <div className="flex-1 overflow-y-auto custom-scrollbar">
                 <div className="h-40 md:h-48 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 relative flex items-center justify-center">
                    <div className="absolute -bottom-8 left-6 md:left-12 flex items-end gap-4">
-                      <div className="w-16 h-16 md:w-20 md:h-20 p-2 flex items-center justify-center bg-black/30 rounded-2xl border border-white/10 filter drop-shadow-lg">
+                      <div className="w-16 h-16 md:w-20 md:h-20 p-2 flex items-center justify-center bg-black/30 rounded-2xl border border-white/10 backdrop-blur-sm">
                         <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} width={80} height={80} />
                       </div>
                       <div className="pb-1">
