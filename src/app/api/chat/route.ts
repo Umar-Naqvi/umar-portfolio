@@ -5,18 +5,16 @@ export const maxDuration = 30;
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
-  console.log("API Route Hit: /api/chat");
-  console.log("Checking for GEMINI_API_KEY:", process.env.GEMINI_API_KEY ? "Found" : "NOT FOUND");
-
   const {messages}: {messages: CoreMessage[]} = await req.json();
 
   try {
     const result = await chat(messages);
     return result.toAIStreamResponse();
   } catch (error: any) {
-    console.error('[API] An error occurred in the chat API route:', error);
-    return new Response(error.message || 'An error occurred. Please check the server logs for more details.', {
+    console.error('[API_CHAT_ERROR]', error);
+    return new Response(error.message || 'An unexpected error occurred.', {
       status: 500,
+      headers: { 'Content-Type': 'text/plain' },
     });
   }
 }
