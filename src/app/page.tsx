@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useChat } from 'ai/react';
 import { portfolioData } from '@/lib/data';
 import { 
     Github, Linkedin, Mail, Phone, ExternalLink, X, 
-    BrainCircuit, Rocket, Globe, Sparkles, 
+    Rocket, Globe, Sparkles, 
     Contact, Cpu, Download, GraduationCap, Briefcase,
     Send, Terminal, User, Bot
 } from 'lucide-react';
@@ -81,7 +82,7 @@ export default function Home() {
                     whileHover={{ rotate: 15 }}
                     className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6 text-cyan-400 bg-white/5 rounded-2xl p-2 md:p-3 border border-white/10"
                   >
-                    <BrainCircuit className="w-full h-full" />
+                    <Image src="/logo.png" alt="logo" width={64} height={64} />
                   </motion.div>
               </div>
               
@@ -155,7 +156,9 @@ export default function Home() {
               transition={{ delay: i * 0.1 + 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <div className="absolute top-4 right-4 text-3xl md:text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-50 group-hover:opacity-100">{project.emoji}</div>
+              <div className="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-50 group-hover:opacity-100">
+                {project.logoUrl && <Image src={project.logoUrl} alt={`${project.title} logo`} layout="fill" objectFit="contain" />}
+              </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2">
                   <span className={`text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full ${project.status === 'Live App' ? 'text-green-400 border-green-900/50 bg-green-950/30' : 'text-cyan-400 border-cyan-900/50 bg-cyan-950/30'}`}>
@@ -211,7 +214,9 @@ export default function Home() {
               <div className="flex-1 overflow-y-auto custom-scrollbar">
                 <div className="h-40 md:h-48 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 relative flex items-center justify-center">
                    <div className="absolute -bottom-8 left-6 md:left-12 flex items-end gap-4">
-                      <div className="text-5xl md:text-6xl filter drop-shadow-lg">{selectedProject.emoji}</div>
+                      <div className="w-16 h-16 md:w-20 md:h-20 relative filter drop-shadow-lg">
+                        {selectedProject.logoUrl && <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} layout="fill" objectFit="contain" />}
+                      </div>
                       <div className="pb-1">
                          <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedProject.title}</h2>
                          <div className="flex items-center gap-2 mt-1">
@@ -311,7 +316,7 @@ export default function Home() {
 
               <div className="flex-1 overflow-y-auto p-4 space-y-4 font-sans text-sm custom-scrollbar bg-opacity-5 min-h-0">
                 {messages.length === 0 && (
-                  <div className="h-full flex flex-col justify-center items-center text-center text-neutral-500 px-4">
+                  <div className="h-full flex flex-col justify-center items-center text-center text-neutral-500 p-4">
                     <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
                         <Sparkles className="w-8 h-8 text-cyan-500" />
                     </div>

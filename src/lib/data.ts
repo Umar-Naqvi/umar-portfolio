@@ -59,7 +59,7 @@ export const portfolioData = {
     {
       id: "billflow",
       title: "BillFlow",
-      emoji: "💸",
+      logoUrl: "/billflow.png",
       category: "SaaS Platform",
       status: "Live App",
       type: "app", 
@@ -76,7 +76,7 @@ export const portfolioData = {
     {
       id: "dukaanbill",
       title: "DukaanBill",
-      emoji: "🛒",
+      logoUrl: "/dukaanbill.png",
       category: "Offline PWA",
       status: "Case Study",
       type: "slides",
@@ -93,7 +93,7 @@ export const portfolioData = {
     {
       id: "notevault",
       title: "NoteVault",
-      emoji: "🧠",
+      logoUrl: "/notevault.png",
       category: "AI EdTech",
       status: "Case Study",
       type: "slides",
