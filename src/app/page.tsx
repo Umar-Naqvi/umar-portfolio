@@ -66,7 +66,7 @@ export default function Home() {
       <FluidBackground />
       <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
-      <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8">
+      <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 pt-8">
         <div className="mb-48">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             
@@ -309,7 +309,7 @@ export default function Home() {
                   </div>
                   <div>
                       <span className="block font-bold text-sm text-white">AI Twin System</span>
-                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
+                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
                   </div>
                 </div>
                 <button onClick={closeAllViews} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
