@@ -4,6 +4,8 @@ import {ai} from '@/ai/genkit';
 import {portfolioData} from '@/lib/data';
 import {generate} from 'genkit';
 import {Message, toGenkitMessage} from 'ai';
+import { onFlow } from '@genkit-ai/next/server';
+
 
 const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     
@@ -23,7 +25,7 @@ const systemPrompt = `You are the AI Digital Twin of Mohammed Umar Ben Naqvi.
     5. Keep responses under 3 sentences unless asked for a deep dive.
   `;
 
-export const chat = ai.defineFlow(
+export const chat = onFlow(
   {
     name: 'chat',
   },
@@ -37,8 +39,9 @@ export const chat = ai.defineFlow(
       config: {
         temperature: 0.8,
       },
+      stream: true
     });
 
-    return response.text();
+    return response.streamText();
   }
 );

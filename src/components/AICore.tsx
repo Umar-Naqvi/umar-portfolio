@@ -13,7 +13,7 @@ interface AICoreProps {
 
 export default function AICore({ isOpen, onClose }: AICoreProps) {
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: '/api/chat',
+    api: '/api/flow/chat',
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
