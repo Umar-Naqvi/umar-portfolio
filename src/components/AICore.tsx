@@ -3,7 +3,7 @@
 import { useChat } from 'ai/react';
 import { motion } from 'framer-motion';
 import { SendHorizonal, Sparkles, X, User, Bot } from 'lucide-react';
-import { FormEvent, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
@@ -21,7 +21,7 @@ const initialMessages = [
 ];
 
 export default function AICore({ isOpen, onClose }: AICoreProps) {
-  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages, append } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages } = useChat({
     initialMessages,
     api: '/api/chat',
     onFinish: () => {
@@ -41,20 +41,6 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
   }, [isOpen, setMessages]);
 
   useEffect(scrollToBottom, [messages]);
-  
-  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const userInput = input;
-    if (!userInput.trim()) return;
-
-    await append({
-      role: 'user',
-      content: userInput,
-    });
-  
-    // Clear input after appending
-    handleInputChange({ target: { value: '' } } as any);
-  };
 
   if (!isOpen) return null;
 
@@ -104,7 +90,7 @@ export default function AICore({ isOpen, onClose }: AICoreProps) {
         </div>
 
         <footer className="p-4 md:p-6 border-t border-white/10 shrink-0">
-          <form onSubmit={handleFormSubmit} className="flex items-center gap-3">
+          <form onSubmit={handleSubmit} className="flex items-center gap-3">
             <Input
               value={input}
               onChange={handleInputChange}
