@@ -10,7 +10,8 @@ import {
     Github, Linkedin, Mail, Phone, ExternalLink, X, 
     Rocket, Globe, Sparkles, 
     Contact, Cpu, Download, GraduationCap, Briefcase,
-    Send, Terminal, User, Bot, FileText
+    Send, Terminal, User, Bot, FileText, Youtube, Instagram,
+    BarChart3, TrendingUp, Package, Award
 } from 'lucide-react';
 import FluidBackground from '@/components/FluidBackground';
 
@@ -60,6 +61,16 @@ export default function Home() {
   const closeAllViews = () => {
     setActiveView(null);
   };
+  
+  const StatIcon = ({ index }: { index: number }) => {
+    const icons = [
+        <BarChart3 key={0} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
+        <TrendingUp key={1} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
+        <Package key={2} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
+        <Award key={3} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
+    ];
+    return icons[index] || null;
+  };
 
   return (
     <main className="min-h-screen w-full bg-[#050505] text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
@@ -91,7 +102,7 @@ export default function Home() {
                 <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-400 mb-3 tracking-tight">
                   {portfolioData.profile.name}
                 </h1>
-                <p className="text-sm md:text-lg text-neutral-400 max-w-lg leading-relaxed">
+                <p className="text-sm md:text-lg text-neutral-400 max-w-xl leading-relaxed">
                   <span className="text-cyan-400">{portfolioData.profile.role}</span>. {portfolioData.profile.bio}
                 </p>
               </div>
@@ -146,6 +157,18 @@ export default function Home() {
                     </div>
                 </div>
             </motion.div>
+            
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    {portfolioData.socialProof.map((stat, i) => (
+                        <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center group hover:border-white/20 transition-colors">
+                            <StatIcon index={i} />
+                            <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-cyan-300 transition-colors">{stat.metric}</h3>
+                            <p className="text-xs md:text-sm text-neutral-400">{stat.label}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
             {portfolioData.projects.map((project, i) => (
               <motion.div
@@ -163,7 +186,7 @@ export default function Home() {
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full ${project.status === 'Live App' ? 'text-green-400 border-green-900/50 bg-green-950/30' : 'text-cyan-400 border-cyan-900/50 bg-cyan-950/30'}`}>
+                    <span className={`text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full ${project.status === 'LIVE APP' ? 'text-green-400 border-green-900/50 bg-green-950/30' : 'text-cyan-400 border-cyan-900/50 bg-cyan-950/30'}`}>
                       {project.status}
                     </span>
                   </div>
@@ -173,6 +196,48 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+           <div className="my-24">
+                <h2 className="text-3xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">Technical Arsenal</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {portfolioData.skills.map((skillCategory, i) => (
+                        <motion.div 
+                          key={i} 
+                          className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 group hover:border-cyan-500/20"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                            <h3 className="font-bold text-lg mb-4 text-cyan-400">{skillCategory.title}</h3>
+                            <ul className="space-y-2">
+                                {skillCategory.items.map((item, j) => (
+                                    <li key={j} className="text-neutral-300 text-sm flex items-center gap-3">
+                                        <div className="w-1.5 h-1.5 bg-neutral-600 rounded-full group-hover:bg-cyan-500 transition-colors" />
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="my-24 text-center">
+                <h2 className="text-3xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">{portfolioData.buildingInPublic.title}</h2>
+                <p className="max-w-2xl mx-auto text-neutral-400 mb-8">{portfolioData.buildingInPublic.text}</p>
+                <div className="flex justify-center gap-4">
+                    <a href={portfolioData.buildingInPublic.socials.youtube} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-red-500/30 hover:text-red-400 transition-all">
+                       <Youtube size={20} />
+                    </a>
+                    <a href={portfolioData.buildingInPublic.socials.instagram} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-pink-500/30 hover:text-pink-400 transition-all">
+                       <Instagram size={20} />
+                    </a>
+                    <a href={portfolioData.buildingInPublic.socials.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
+                       <Linkedin size={20} />
+                    </a>
+                </div>
+            </div>
         </div>
       </div>
       
@@ -437,6 +502,9 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      <footer className="relative z-10 text-center text-neutral-500 text-sm py-8 font-mono">
+        Follow my journey at <a href="https://umar.builds" target="_blank" rel="noreferrer" className="text-cyan-400 hover:underline">umar.builds</a>
+      </footer>
     </main>
   );
 }

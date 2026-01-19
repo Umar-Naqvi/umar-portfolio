@@ -16,7 +16,7 @@ export const portfolioData = {
         github: "https://github.com/mdumarnaqvi"
       }
     },
-    bio: "I'm a data-driven Product Manager and MBA candidate who loves the chaotic beauty of 0-to-1 product building. I specialize in bridging the gap between marketing strategy and technical execution, using AI to accelerate prototyping and validate ideas faster.",
+    bio: "I'm a Full-Stack Product Builder who ships products solo—from user research to live deployment. I combine Product Management + AI-Assisted Development + Digital Marketing + CRM to take ideas from strategy to shipped in weeks, not months. Currently: Building BillFlow (live SaaS) and sharing the complete playbook at umar.builds.",
     philosophy: "AI is not a replacement; it is the ultimate Assistant. It equips us to make better decisions, simplifies complex processes, and helps us understand concepts without sifting through hundreds of research papers.",
     hobbies: [
       "Football Enthusiast (FIFA, EA Sports FC)",
@@ -24,7 +24,43 @@ export const portfolioData = {
       "Tech Explorer (Firebase Studio, Gemini)"
     ]
   },
+
+  socialProof: [
+    { metric: "1M+", label: "Social Media Views" },
+    { metric: "50%", label: "Organic Traffic Growth" },
+    { metric: "3", label: "Products (1 Live, 2 Case Studies)" },
+    { metric: "30%", label: "Brand Awareness Increase" }
+  ],
   
+  skills: [
+    {
+        title: "Product Management",
+        items: ["User Research", "PRDs", "Roadmapping", "Impact vs Effort"]
+    },
+    {
+        title: "AI-Assisted Dev",
+        items: ["Cursor AI", "Gemini API", "Next.js", "Firebase"]
+    },
+    {
+        title: "Digital Marketing",
+        items: ["SEO/SEM", "GA4", "Content Marketing"]
+    },
+    {
+        title: "CRM & Ops",
+        items: ["SAP CRM", "GTM Strategy", "Data Dashboards"]
+    }
+  ],
+
+  buildingInPublic: {
+      title: "Building in Public",
+      text: "I share my complete product-building process at umar.builds. From product management frameworks to AI-assisted dev workflows.",
+      socials: {
+          youtube: "https://www.youtube.com/@umarbuilds",
+          instagram: "https://www.instagram.com/umar.builds",
+          linkedin: "https://www.linkedin.com/in/mohammedumarnaqvi/"
+      }
+  },
+
   career: [
     {
       id: "mba",
@@ -62,16 +98,16 @@ export const portfolioData = {
       title: "BillFlow",
       logoUrl: "/billflow.png",
       category: "SaaS Platform",
-      status: "Live App",
+      status: "LIVE APP",
       type: "app", 
       link: "https://billflow.shop",
-      stack: ["Next.js 14", "Firebase", "Tailwind", "UPI Payments"],
+      stack: ["Next.js", "Firebase", "Cursor"],
       summary: "Simplified Invoicing & Customer Management for Freelancers.",
-      description: "Engineered a responsive SaaS platform to solve freelance billing chaos. It allows users to add unbilled items as they happen, then compile them into a professional PDF invoice with an embedded UPI QR code for instant payment. I built this full-stack solo, using AI to architect the database and logic.",
+      description: "Dynamic 'Unbilled Item' tracking, instant PDF generation with embedded UPI QR codes, and secure cloud sync. Architected database and logic using AI.",
       metrics: [
-        "Dynamic Itemized Billing",
-        "Secure Firebase Auth & Firestore",
-        "Instant PDF Generation with UPI QR"
+        "Dynamic billing",
+        "UPI integration",
+        "Customer tracking"
       ]
     },
     {
@@ -79,12 +115,12 @@ export const portfolioData = {
       title: "DukaanBill",
       logoUrl: "/dukaanbill.png",
       category: "Offline PWA",
-      status: "Case Study",
+      status: "CASE STUDY",
       type: "slides",
       link: "https://drive.google.com/file/d/1EKhmWHEms5L6Ej2P1iZzdBX_6KTtW2tr/view?usp=drivesdk",
       stack: ["React", "PWA", "Local Storage", "Gemini AI"],
       summary: "Empowering 63M+ Indian MSMEs with 10-second, offline billing.",
-      description: "Designed an offline-first PWA to replace pen-and-paper for Kirana stores, addressing the reality of unstable internet in rural India. The goal is to transform a 120-second manual process into a 10-second digital one.",
+      description: "Problem: Small retailers stuck between slow paper and complex Excel. Solution: An offline-first PWA designed for tier 2/3 cities to bridge the connectivity gap.",
       metrics: [
         "Address a 63M+ User Market",
         "10-Second Billing Goal",
@@ -96,12 +132,12 @@ export const portfolioData = {
       title: "NoteVault",
       logoUrl: "/notevault.png",
       category: "AI EdTech",
-      status: "Case Study",
+      status: "CASE STUDY",
       type: "slides",
       link: "https://drive.google.com/file/d/1yHjGt3Hy1qcDq7GE8Sc40450laAAVfz3/view?usp=drivesdk",
       stack: ["Gemini AI", "Next.js", "Firebase"],
-      summary: "An intelligent platform that transforms static lecture notes into active study tools.",
-      description: "Conceptualized an intelligent EdTech platform that turns static PDFs and lecture notes into dynamic study tools. It solves content fragmentation by using GenAI to auto-generate quizzes and flashcards, reducing study prep time from an hour to minutes.",
+      summary: "AI-powered platform transforming static lecture notes into active study tools.",
+      description: "Solution: Gemini-powered quiz/flashcard generation to solve content fragmentation. Result: A complete product strategy was developed using the AARRR framework, with 'Weekly Study Sessions Initiated' as the North Star Metric.",
       metrics: [
         "AI Note Summarization",
         "Auto-Quiz & Flashcard Generation",
