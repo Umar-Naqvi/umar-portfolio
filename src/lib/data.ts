@@ -51,16 +51,6 @@ export const portfolioData = {
     }
   ],
 
-  buildingInPublic: {
-      title: "Building in Public",
-      text: "I share my complete product-building process at umar.builds. From product management frameworks to AI-assisted dev workflows.",
-      socials: {
-          youtube: "https://www.youtube.com/@umarbuilds",
-          instagram: "https://www.instagram.com/umar.builds",
-          linkedin: "https://www.linkedin.com/in/mohammedumarnaqvi/"
-      }
-  },
-
   career: [
     {
       id: "mba",

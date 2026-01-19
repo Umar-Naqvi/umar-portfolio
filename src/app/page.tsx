@@ -161,11 +161,18 @@ export default function Home() {
             <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                     {portfolioData.socialProof.map((stat, i) => (
-                        <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center group hover:border-white/20 transition-colors">
+                        <motion.div 
+                            key={i} 
+                            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center group hover:border-white/20 transition-colors"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.1, duration: 0.5 }}
+                            viewport={{ once: true }}
+                        >
                             <StatIcon index={i} />
                             <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-cyan-300 transition-colors">{stat.metric}</h3>
                             <p className="text-xs md:text-sm text-neutral-400">{stat.label}</p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
@@ -220,22 +227,6 @@ export default function Home() {
                             </ul>
                         </motion.div>
                     ))}
-                </div>
-            </div>
-
-            <div className="my-24 text-center">
-                <h2 className="text-3xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">{portfolioData.buildingInPublic.title}</h2>
-                <p className="max-w-2xl mx-auto text-neutral-400 mb-8">{portfolioData.buildingInPublic.text}</p>
-                <div className="flex justify-center gap-4">
-                    <a href={portfolioData.buildingInPublic.socials.youtube} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-red-500/30 hover:text-red-400 transition-all">
-                       <Youtube size={20} />
-                    </a>
-                    <a href={portfolioData.buildingInPublic.socials.instagram} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-pink-500/30 hover:text-pink-400 transition-all">
-                       <Instagram size={20} />
-                    </a>
-                    <a href={portfolioData.buildingInPublic.socials.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all">
-                       <Linkedin size={20} />
-                    </a>
                 </div>
             </div>
         </div>
@@ -501,10 +492,6 @@ export default function Home() {
           </div>
         )}
       </AnimatePresence>
-
-      <footer className="relative z-10 text-center text-neutral-500 text-sm py-8 font-mono">
-        Follow my journey at <a href="https://umar.builds" target="_blank" rel="noreferrer" className="text-cyan-400 hover:underline">umar.builds</a>
-      </footer>
     </main>
   );
 }
