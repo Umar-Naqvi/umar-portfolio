@@ -16,7 +16,7 @@ export const portfolioData = {
         github: "https://github.com/mdumarnaqvi"
       }
     },
-    bio: "I'm a Full-Stack Product Builder who ships products solo—from user research to live deployment. I combine Product Management + AI-Assisted Development + Digital Marketing + CRM to take ideas from strategy to shipped in weeks, not months. Currently: Building BillFlow (live SaaS) and sharing the complete playbook at umar.builds.",
+    bio: "I'm a Full-Stack Product Builder who ships products solo—from user research to live deployment. I combine Product Management + AI-Assisted Development + Digital Marketing + CRM to take ideas from strategy to shipped in weeks, not months. Currently: Building BillFlow (live SaaS).",
     philosophy: "AI is not a replacement; it is the ultimate Assistant. It equips us to make better decisions, simplifies complex processes, and helps us understand concepts without sifting through hundreds of research papers.",
     hobbies: [
       "Football Enthusiast (FIFA, EA Sports FC)",
