@@ -142,7 +142,7 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full bg-[#050505] text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
       <FluidBackground />
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      
 
       <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 pt-8">
         <div className="mb-48">
@@ -482,7 +482,7 @@ export default function Home() {
                      </div>
                      <p className="text-lg font-medium text-white mb-2">System Online ⚡️</p>
                      <div className="text-sm text-neutral-400 space-y-2 max-w-sm">
-                         <p>I am Umar's AI Digital Twin. I have access to his entire technical and product knowledge—from his 0-to-1 product strategies to his full-stack implementations with Firebase and AI.</p>
+                         <p>I have access to his entire technical and product knowledge—from his 0-to-1 product strategies to his full-stack implementations with Firebase and AI.</p>
                          <p>Initiate a query below! 👇</p>
                      </div>
                      <div className="flex flex-wrap gap-2 justify-center mt-6">
