@@ -12,7 +12,6 @@ import {
     Send, Terminal, User, Bot, CheckCircle, ArrowRight,
     BarChart3, TrendingUp, Package, Award, Youtube, Instagram, Globe, Sparkles, Contact
 } from 'lucide-react';
-import FluidBackground from '@/components/FluidBackground';
 import { 
     Tooltip,
     TooltipContent,
@@ -140,7 +139,14 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
-      <FluidBackground />
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <Image
+          src="/bg.png"
+          alt="Abstract background"
+          fill
+          className="object-cover"
+        />
+      </div>
       
 
       <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 pt-8">
@@ -595,5 +601,3 @@ export default function Home() {
     </main>
   );
 }
-
-    

@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
-import FluidBackground from '@/components/FluidBackground';
 import { ArrowLeft, CheckCircle, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 const content = {
     hero: {
@@ -139,7 +139,14 @@ const SubSection = ({ title, children }: { title: string, children: React.ReactN
 export default function BillflowTechnicalPage() {
     return (
         <main className="min-h-screen w-full text-white font-sans selection:bg-cyan-500/30">
-            <FluidBackground />
+            <div className="fixed inset-0 -z-10 overflow-hidden">
+                <Image
+                src="/bg.png"
+                alt="Abstract background"
+                fill
+                className="object-cover"
+                />
+            </div>
             
 
             <div className="relative z-10 max-w-4xl mx-auto p-4 md:p-8 pt-16 pb-24">
