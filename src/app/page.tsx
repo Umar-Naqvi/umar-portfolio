@@ -139,22 +139,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <Image
-          src="/bg.png"
-          alt="Abstract background"
-          fill
-          className="object-cover"
-        />
-      </div>
-      
-
       <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 pt-8">
         <div className="mb-48">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             
             <motion.div 
-              className="col-span-1 md:col-span-2 lg:col-span-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-colors relative overflow-hidden"
+              className="col-span-1 md:col-span-2 lg:col-span-3 glass-card rounded-3xl p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-colors relative overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -207,7 +197,7 @@ export default function Home() {
                     {portfolioData.socialProof.map((stat, i) => (
                         <motion.div 
                             key={i} 
-                            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center group hover:border-white/20 transition-colors"
+                            className="glass-card rounded-2xl p-4 text-center group hover:border-white/20 transition-colors"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1, duration: 0.5 }}
@@ -229,7 +219,7 @@ export default function Home() {
                     layoutId={`card-${project.id}`}
                     key={project.id}
                     onClick={() => openView(project.id === 'ai-twin' ? 'chat' : project.id)}
-                    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group flex flex-col md:flex-row items-start gap-6"
+                    className="glass-card rounded-3xl p-6 cursor-pointer hover:border-white/20 transition-all relative overflow-hidden group flex flex-col md:flex-row items-start gap-6"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
@@ -281,7 +271,7 @@ export default function Home() {
                     layoutId={`card-${project.id}`}
                     key={project.id}
                     onClick={() => openView(project.id)}
-                    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
+                    className="glass-card rounded-3xl p-6 cursor-pointer hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
@@ -304,7 +294,7 @@ export default function Home() {
                     {portfolioData.skills.map((skillCategory, i) => (
                         <motion.div 
                             key={i} 
-                            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 group hover:border-cyan-500/20 transition-colors"
+                            className="glass-card rounded-2xl p-6 group hover:border-cyan-500/20 transition-colors"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1, duration: 0.5 }}
@@ -325,7 +315,7 @@ export default function Home() {
             </div>
 
             <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-24">
-                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-12 text-center">
+                <div className="glass-card rounded-3xl p-8 md:p-12 text-center">
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">About Me</h2>
                     <p className="text-neutral-300 max-w-3xl mx-auto leading-relaxed whitespace-pre-wrap mb-6">{portfolioData.profile.aboutPreview}</p>
                     <Link href="/about" className="font-bold text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-2">
@@ -398,11 +388,11 @@ export default function Home() {
 
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-4 pt-16 pb-28" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center p-4 pt-16 pb-28" onClick={closeAllViews}>
             <motion.div
               layoutId={`card-${selectedProject.id}`}
               onClick={(e) => e.stopPropagation()}
-              className="w-full md:max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] h-auto"
+              className="w-full md:max-w-4xl glass-card rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] h-auto"
             >
               <button onClick={closeAllViews} className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
               
@@ -455,14 +445,14 @@ export default function Home() {
 
       <AnimatePresence>
         {activeView === 'chat' && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-28" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-center justify-center p-4 pb-28" onClick={closeAllViews}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 50 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full md:max-w-lg bg-[#0a0a0a]/80 backdrop-blur-xl border border-cyan-500/30 rounded-3xl shadow-2xl shadow-cyan-900/20 overflow-hidden flex flex-col max-h-[85vh] h-full"
+              className="w-full md:max-w-lg glass-card rounded-3xl shadow-2xl shadow-cyan-900/20 overflow-hidden flex flex-col max-h-[85vh] h-full"
             >
               <div className="p-4 border-b border-white/10 flex justify-between items-center bg-cyan-950/10 shrink-0">
                 <div className="flex items-center gap-3">
@@ -559,14 +549,14 @@ export default function Home() {
 
       <AnimatePresence>
         {activeView === 'contact' && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-sm pb-24" onClick={closeAllViews}>
+          <div className="fixed inset-0 z-40 flex items-center justify-center pb-24" onClick={closeAllViews}>
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{type: 'spring', stiffness: 300, damping: 25}}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-sm bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 m-4 shadow-2xl relative"
+              className="w-full max-w-sm glass-card rounded-3xl p-8 m-4 relative"
             >
               <h3 className="text-xl font-bold mb-1">Quick Contact</h3>
               <p className="text-neutral-400 text-sm mb-6">Let's build something great together.</p>

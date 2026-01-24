@@ -68,6 +68,30 @@
   }
 }
 
+@layer components {
+    .hero-background {
+        @apply fixed inset-0 -z-20 bg-cover bg-center;
+        background-image: url('/bg.png');
+        background-attachment: fixed;
+        animation: zoom-in-out 20s ease-in-out infinite alternate;
+        transform: scale(1.0);
+    }
+
+    .hero-background-overlay {
+        @apply fixed inset-0 -z-10 bg-black/60;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    .glass-card {
+        background: rgba(10, 10, 20, 0.75);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+}
+
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
     width: 8px;
@@ -82,5 +106,22 @@
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--muted-foreground));
+  }
+
+  @keyframes zoom-in-out {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-background-overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
   }
 }

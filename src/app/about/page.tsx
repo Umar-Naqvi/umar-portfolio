@@ -63,16 +63,6 @@ const aboutData = {
 export default function AboutPage() {
     return (
         <main className="min-h-screen w-full text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
-            <div className="fixed inset-0 -z-10 overflow-hidden">
-                <Image
-                src="/bg.png"
-                alt="Abstract background"
-                fill
-                className="object-cover"
-                />
-            </div>
-            
-
             <div className="relative z-10 max-w-4xl mx-auto p-4 md:p-8 pt-16 pb-24">
                 <Link href="/" className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8">
                     <ArrowLeft size={16} />
@@ -89,7 +79,7 @@ export default function AboutPage() {
                    <p><strong className="text-neutral-200">{aboutData.coreBelief.title}</strong> {aboutData.coreBelief.content}</p>
                 </div>
                 
-                <div className="p-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm mb-12">
+                <div className="p-8 glass-card rounded-2xl mb-12">
                     <h2 className="text-3xl font-bold text-white mb-6">{aboutData.technicalFoundation.title}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>

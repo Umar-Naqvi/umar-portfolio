@@ -139,16 +139,6 @@ const SubSection = ({ title, children }: { title: string, children: React.ReactN
 export default function BillflowTechnicalPage() {
     return (
         <main className="min-h-screen w-full text-white font-sans selection:bg-cyan-500/30">
-            <div className="fixed inset-0 -z-10 overflow-hidden">
-                <Image
-                src="/bg.png"
-                alt="Abstract background"
-                fill
-                className="object-cover"
-                />
-            </div>
-            
-
             <div className="relative z-10 max-w-4xl mx-auto p-4 md:p-8 pt-16 pb-24">
                 <Link href="/" className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8">
                     <ArrowLeft size={16} />
@@ -166,7 +156,7 @@ export default function BillflowTechnicalPage() {
                 </div>
 
                 <Section title={content.problem.title}>
-                    <div className="p-6 bg-white/5 border border-white/10 rounded-2xl space-y-6">
+                    <div className="p-6 glass-card rounded-2xl space-y-6">
                         <SubSection title={content.problem.userPain.title}><p className="whitespace-pre-wrap">{content.problem.userPain.body}</p></SubSection>
                         <SubSection title={content.problem.marketGap.title}><p>{content.problem.marketGap.body}</p></SubSection>
                         <SubSection title={content.problem.myInsight.title}><p className="font-medium text-cyan-300">{content.problem.myInsight.body}</p></SubSection>
@@ -175,7 +165,7 @@ export default function BillflowTechnicalPage() {
                 
                 <Section title="Technical Challenges & Solutions">
                     {content.challenges.map((challenge, i) => (
-                         <div key={i} className="mb-12 p-6 bg-white/5 border border-white/10 rounded-2xl">
+                         <div key={i} className="mb-12 p-6 glass-card rounded-2xl">
                              <h3 className="text-2xl font-bold text-white mb-4">{challenge.title}</h3>
                              <p className="italic text-neutral-400 mb-4">"{challenge.problem}"</p>
                              <ul className="space-y-2 mb-6">
@@ -254,13 +244,13 @@ export default function BillflowTechnicalPage() {
                 </Section>
 
                 <Section title="Bonus: AI Twin - A RAG Implementation">
-                    <div className="p-8 bg-white/5 border border-white/10 rounded-2xl space-y-8">
+                    <div className="p-8 glass-card rounded-2xl space-y-8">
                         <p className="text-lg text-neutral-300">While building my portfolio, I realized: "Why make recruiters read a PDF resume when they can just ask questions?"</p>
                         
                         <div>
                             <h3 className="text-xl font-semibold text-cyan-400 mb-3">The Build:</h3>
                             <ul className="space-y-2 list-disc list-inside text-neutral-300">
-                                <li>Built a custom RAG (Retrieval-Augmented Generation) chatbot using Gemini 2.5 Flash</li>
+                                <li>Built a custom RAG (Retrieval-Augmented Generation) chatbot using Gemini 2.0 Flash</li>
                                 <li>Trained it on all my project docs (BillFlow, DukaanBill, NoteVault), resume, and methodologies</li>
                                 <li>Custom chat UI with suggested prompts and error handling</li>
                             </ul>
@@ -269,7 +259,7 @@ export default function BillflowTechnicalPage() {
                         <div>
                             <h3 className="text-xl font-semibold text-cyan-400 mb-3">Technical Stack:</h3>
                             <ul className="space-y-2 list-disc list-inside text-neutral-300">
-                                <li>Gemini 2.5 Flash API (for speed + cost efficiency)</li>
+                                <li>Gemini 2.0 Flash API (for speed + cost efficiency)</li>
                                 <li>Vector embeddings for context retrieval</li>
                                 <li>Next.js API routes for backend</li>
                                 <li>Responsive modal interface</li>
