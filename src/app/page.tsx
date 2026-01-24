@@ -299,18 +299,18 @@ export default function Home() {
                     {portfolioData.skills.map((skillCategory, i) => (
                         <motion.div 
                             key={i} 
-                            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 group hover:border-white/20 transition-colors"
+                            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 group hover:border-cyan-500/20 transition-colors"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1, duration: 0.5 }}
                             viewport={{ once: true }}
                         >
                             <h3 className="text-lg font-bold text-cyan-400 mb-4">{skillCategory.title}</h3>
-                            <ul className="space-y-2">
+                            <ul className="space-y-3">
                                 {skillCategory.items.map((item, j) => (
-                                    <li key={j} className="text-sm text-neutral-300 flex items-start gap-2">
-                                        <CheckCircle size={14} className="shrink-0 mt-1 text-green-500/70" />
-                                        <span>{item}</span>
+                                    <li key={j} className="flex items-start gap-3 group/item">
+                                        <div className="w-2 h-2 rounded-full bg-neutral-600/80 mt-[7px] shrink-0 transition-all duration-300 ease-in-out group-hover/item:bg-cyan-400 group-hover/item:shadow-[0_0_8px_1px_hsl(var(--primary))]"></div>
+                                        <span className="text-sm text-neutral-400 transition-colors group-hover/item:text-neutral-100">{item}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -596,3 +596,5 @@ export default function Home() {
     </main>
   );
 }
+
+    
