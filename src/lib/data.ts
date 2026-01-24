@@ -2,10 +2,10 @@
 export const portfolioData = {
   profile: {
     name: "Mohammed Umar Ben Naqvi",
-    role: "AI-First Product Manager & Developer",
-    tagline: "Building the Future, 0-to-1.",
+    role: "Product Engineer & Builder",
+    tagline: "I ship AI-powered SaaS products from 0→1",
     location: "Vijayapura, Karnataka, India",
-    availability: "Open to Full-time AI PM roles.",
+    availability: "Open to Full-time Product Engineer roles.",
     resumeUrl: "https://drive.google.com/file/d/1XxeoS25bzpdZKMU468-HXprnc6RtIIA0/view?usp=drive_link",
     logoUrl: "/logo.png",
     contact: {
@@ -16,7 +16,8 @@ export const portfolioData = {
         github: "https://github.com/mdumarnaqvi"
       }
     },
-    bio: "I'm a Full-Stack Product Builder who ships products solo—from user research to live deployment. I combine Product Management + AI-Assisted Development + Digital Marketing + CRM to take ideas from strategy to shipped in weeks, not months. Currently: Building BillFlow (live SaaS).",
+    bio: "I combine product thinking with full-stack execution. I don't just design products—I architect and ship them. Using AI-accelerated development, I've built and deployed production applications handling real users and real transactions.",
+    aboutPreview: "I'm a product engineer who ships AI-powered applications from concept to production. I've built and deployed full-stack SaaS products—handling everything from Firebase backend architecture to responsive frontends—using AI-accelerated development workflows.\n\nMy approach: Identify real user pain, architect the solution, and ship fast. I've taken products from 0→1 solo, managing the entire technical stack while maintaining product-first thinking.",
     philosophy: "AI is not a replacement; it is the ultimate Assistant. It equips us to make better decisions, simplifies complex processes, and helps us understand concepts without sifting through hundreds of research papers.",
     hobbies: [
       "Football Enthusiast (FIFA, EA Sports FC)",
@@ -28,7 +29,7 @@ export const portfolioData = {
   socialProof: [
     { metric: "1M+", label: "Social Media Views" },
     { metric: "50%", label: "Organic Traffic Growth" },
-    { metric: "3", label: "Products (1 Live, 2 Case Studies)" },
+    { metric: "3", label: "Products Shipped" },
     { metric: "30%", label: "Brand Awareness Increase" }
   ],
   
@@ -85,54 +86,92 @@ export const portfolioData = {
   projects: [
     {
       id: "billflow",
+      type: "live",
       title: "BillFlow",
+      heading: "BillFlow - Mobile-First Invoicing Platform",
       logoUrl: "/billflow.png",
-      category: "SaaS Platform",
-      status: "LIVE APP",
-      type: "app", 
-      link: "https://billflow.shop",
-      stack: ["Next.js", "Firebase", "Cursor"],
-      summary: "Simplified Invoicing & Customer Management for Freelancers.",
-      description: "Dynamic 'Unbilled Item' tracking, instant PDF generation with embedded UPI QR codes, and secure cloud sync. Architected database and logic using AI.",
+      description: "A Progressive Web App for Indian SMBs with offline-first architecture. Handles invoice creation, inventory tracking, and UPI payments with zero internet dependency.",
+      techStackBadge: ["Next.js", "Firebase", "TypeScript", "PWA"],
       metrics: [
-        "Dynamic billing",
-        "UPI integration",
-        "Customer tracking"
-      ]
+        "Offline-first architecture",
+        "Real-time sync with conflict resolution",
+        "100% mobile-responsive"
+      ],
+      cta: { text: "View Live Product →", link: "https://billflow.shop" },
+      secondaryLink: { text: "Technical Breakdown →", link: "/billflow-technical" }
     },
     {
       id: "dukaanbill",
+      type: "case-study",
       title: "DukaanBill",
+      heading: "DukaanBill - Offline Billing PWA",
       logoUrl: "/dukaanbill.png",
-      category: "Offline PWA",
-      status: "CASE STUDY",
-      type: "slides",
-      link: "https://drive.google.com/file/d/1EKhmWHEms5L6Ej2P1iZzdBX_6KTtW2tr/view?usp=drivesdk",
-      stack: ["React", "PWA", "Local Storage", "Gemini AI"],
-      summary: "Empowering 63M+ Indian MSMEs with 10-second, offline billing.",
-      description: "Problem: Small retailers stuck between slow paper and complex Excel. Solution: An offline-first PWA designed for tier 2/3 cities to bridge the connectivity gap.",
+      description: "10-second billing solution for shops with unstable internet. Built with browser storage for 100% reliability.",
+      techStackBadge: ["React", "PWA", "Local Storage"],
       metrics: [
-        "Address a 63M+ User Market",
-        "10-Second Billing Goal",
-        "100% Offline-First Functionality"
-      ]
+        "Zero internet dependency",
+        "Instant search & auto-calculation",
+        "Print-ready invoices"
+      ],
+      cta: { text: "View Case Study →", link: "https://docs.google.com/presentation/d/1EKhmWHEms5L6Ej2P1iZzdBX_6KTtW2tr/edit?usp=sharing" },
+      technicalImplementation: {
+        title: "Technical Implementation",
+        techDecisions: {
+          title: "Tech Decisions:",
+          points: [
+            "PWA with offline-first local storage (no Firebase dependency in V1)",
+            "React for component reusability",
+            "Browser's Print API for invoice generation (no PDF library needed)"
+          ]
+        },
+        architectureChoice: {
+          title: "Architecture Choice:",
+          body: "I deliberately kept V1 simple—no backend, no auth. The product validation question was \"Will shop owners use a billing app?\" not \"Can I build complex sync logic?\" \n\nOnce validated, V2 adds Firebase for cloud backup."
+        },
+        whyThisMattered: {
+          title: "Why This Mattered:",
+          body: "Shipped in 2 weeks instead of 2 months. Learned that speed > perfection for MVP validation."
+        }
+      }
     },
     {
       id: "notevault",
+      type: "case-study",
       title: "NoteVault",
+      heading: "NoteVault - AI Study Platform",
       logoUrl: "/notevault.png",
-      category: "AI EdTech",
-      status: "CASE STUDY",
-      type: "slides",
-      link: "https://drive.google.com/file/d/1yHjGt3Hy1qcDq7GE8Sc40450laAAVfz3/view?usp=drivesdk",
-      stack: ["Gemini AI", "Next.js", "Firebase"],
-      summary: "AI-powered platform transforming static lecture notes into active study tools.",
-      description: "Solution: Gemini-powered quiz/flashcard generation to solve content fragmentation. Result: A complete product strategy was developed using the AARRR framework, with 'Weekly Study Sessions Initiated' as the North Star Metric.",
+      description: "EdTech platform using Gemini AI to transform static notes into interactive study tools. Built for students and teachers.",
+      techStackBadge: ["React", "Firebase", "Gemini AI"],
       metrics: [
-        "AI Note Summarization",
-        "Auto-Quiz & Flashcard Generation",
-        "Reduces Study Prep by over 90%"
-      ]
+        "AI-powered quiz generation",
+        "Automated flashcard creation",
+        "Real-time collaboration"
+      ],
+      cta: { text: "View Case Study →", link: "https://docs.google.com/presentation/d/1yHjGt3Hy1qcDq7GE8Sc40450laAAVfz3/edit?usp=sharing" },
+      technicalImplementation: {
+        title: "Technical Implementation",
+        techDecisions: {
+          title: "Tech Decisions:",
+          points: [
+            "Firebase for real-time collaboration (teachers + students)",
+            "Gemini AI API for quiz/flashcard generation",
+            "React Context for auth state management"
+          ]
+        },
+        aiIntegrationChallenge: {
+          title: "AI Integration Challenge:",
+          body: "Gemini's responses can be inconsistent. I solved this with:",
+          points: [
+            "Structured prompts (JSON-only responses)",
+            "Retry logic with exponential backoff",
+            "Fallback to manual quiz creation if AI fails"
+          ]
+        },
+        productInsight: {
+          title: "Product Insight:",
+          body: "The AI is the feature, but reliability is the product. Users forgive slow AI; they don't forgive broken AI."
+        }
+      }
     }
   ]
 };

@@ -3,6 +3,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useChat } from 'ai/react';
 import { portfolioData } from '@/lib/data';
@@ -10,7 +11,7 @@ import {
     Github, Linkedin, Mail, Phone, ExternalLink, X, 
     Rocket, Globe, Sparkles, 
     Contact, Cpu, Download, GraduationCap, Briefcase,
-    Send, Terminal, User, Bot, FileText, Youtube, Instagram,
+    Send, Terminal, User, Bot, CheckCircle, ArrowRight,
     BarChart3, TrendingUp, Package, Award
 } from 'lucide-react';
 import FluidBackground from '@/components/FluidBackground';
@@ -53,6 +54,8 @@ export default function Home() {
 
   const selectedProject = portfolioData.projects.find(p => p.id === activeView);
   const selectedCareer = portfolioData.career.find(c => c.id === activeView);
+  const shippedProducts = portfolioData.projects.filter(p => p.type === 'live');
+  const caseStudies = portfolioData.projects.filter(p => p.type === 'case-study');
 
   const openView = (viewId: string) => {
     setActiveView(viewId);
@@ -72,6 +75,54 @@ export default function Home() {
     return icons[index] || null;
   };
 
+  const TechnicalImplementation = ({ impl }: { impl: any }) => {
+    if (!impl) return null;
+    return (
+      <div className="mt-8 pt-8 border-t border-white/10">
+        <h3 className="text-xl font-bold text-white mb-4">{impl.title}</h3>
+        {impl.techDecisions && (
+          <div className="mb-6">
+            <h4 className="font-semibold text-cyan-400 mb-2">{impl.techDecisions.title}</h4>
+            <ul className="space-y-2">
+              {impl.techDecisions.points.map((point: string, i: number) => (
+                <li key={i} className="flex items-start gap-2 text-neutral-300"><CheckCircle size={16} className="mt-1 shrink-0 text-green-500" /><span>{point}</span></li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {impl.architectureChoice && (
+          <div className="mb-6">
+            <h4 className="font-semibold text-cyan-400 mb-2">{impl.architectureChoice.title}</h4>
+            <p className="text-neutral-300 whitespace-pre-wrap">{impl.architectureChoice.body}</p>
+          </div>
+        )}
+        {impl.whyThisMattered && (
+          <div className="mb-6">
+            <h4 className="font-semibold text-cyan-400 mb-2">{impl.whyThisMattered.title}</h4>
+            <p className="text-neutral-300">{impl.whyThisMattered.body}</p>
+          </div>
+        )}
+        {impl.aiIntegrationChallenge && (
+          <div className="mb-6">
+            <h4 className="font-semibold text-cyan-400 mb-2">{impl.aiIntegrationChallenge.title}</h4>
+            <p className="text-neutral-300 mb-2">{impl.aiIntegrationChallenge.body}</p>
+            <ul className="space-y-2">
+              {impl.aiIntegrationChallenge.points.map((point: string, i: number) => (
+                <li key={i} className="flex items-start gap-2 text-neutral-300"><CheckCircle size={16} className="mt-1 shrink-0 text-green-500" /><span>{point}</span></li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {impl.productInsight && (
+          <div>
+            <h4 className="font-semibold text-cyan-400 mb-2">{impl.productInsight.title}</h4>
+            <p className="text-neutral-300">{impl.productInsight.body}</p>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <main className="min-h-screen w-full bg-[#050505] text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
       <FluidBackground />
@@ -82,7 +133,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             
             <motion.div 
-              className="col-span-1 md:col-span-2 lg:col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-colors relative overflow-hidden"
+              className="col-span-1 md:col-span-2 lg:col-span-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-colors relative overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -90,20 +141,20 @@ export default function Home() {
               <div className="absolute -right-10 -top-10 w-48 h-48 md:w-64 md:h-64 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-colors" />
               
               <div>
-                <div className="flex justify-between items-start">
-                    <motion.div 
-                      whileHover={{ rotate: 15 }}
-                      className="mb-4 md:mb-6"
-                    >
-                      <Image src={portfolioData.profile.logoUrl} alt="Logo" width={80} height={80} className="w-20 h-20 md:w-24 md:h-24" />
+                <div className="flex justify-between items-start mb-4">
+                    <motion.div whileHover={{ rotate: 15 }}>
+                      <Image src={portfolioData.profile.logoUrl} alt="Logo" width={80} height={80} className="w-16 h-16 md:w-20 md:h-20" />
                     </motion.div>
                 </div>
                 
-                <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-400 mb-3 tracking-tight">
-                  {portfolioData.profile.name}
+                <h2 className="text-lg md:text-xl font-medium text-neutral-300 mb-1">{portfolioData.profile.name}</h2>
+                <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-300 mb-2 tracking-tight">
+                  {portfolioData.profile.role}
                 </h1>
-                <p className="text-sm md:text-lg text-neutral-400 max-w-xl leading-relaxed">
-                  <span className="text-cyan-400">{portfolioData.profile.role}</span>. {portfolioData.profile.bio}
+                <p className="text-xl md:text-2xl text-cyan-400 font-medium mb-4">{portfolioData.profile.tagline}</p>
+
+                <p className="text-sm md:text-base text-neutral-400 max-w-3xl leading-relaxed">
+                  {portfolioData.profile.bio}
                 </p>
               </div>
               
@@ -127,38 +178,8 @@ export default function Home() {
                  </div>
               </div>
             </motion.div>
-
-            <motion.div 
-              className="col-span-1 md:col-span-2 lg:col-span-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 relative overflow-hidden flex flex-col"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-                <div className="flex items-center gap-2 mb-6 text-neutral-400">
-                    <Briefcase size={16} />
-                    <span className="text-xs font-mono uppercase tracking-wider">Career Log</span>
-                </div>
-                
-                <div className="flex-1 overflow-y-auto custom-scrollbar -mr-4 pr-4">
-                    <div className="relative flex flex-col gap-6 border-l border-white/10 ml-1">
-                      {portfolioData.career.map((item) => (
-                          <motion.div 
-                            key={item.id}
-                            layoutId={`card-${item.id}`}
-                            onClick={() => openView(item.id)}
-                            className="relative pl-6 cursor-pointer group"
-                          >
-                              <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-neutral-800 group-hover:bg-cyan-500 transition-colors border-2 border-background" />
-                              <span className="text-[10px] font-mono text-cyan-500/80 mb-1 block">{item.year}</span>
-                              <h4 className="text-sm font-bold text-white group-hover:text-cyan-100">{item.role}</h4>
-                              <p className="text-xs text-neutral-500 group-hover:text-neutral-400">{item.org}</p>
-                          </motion.div>
-                      ))}
-                    </div>
-                </div>
-            </motion.div>
             
-            <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-6">
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-12">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                     {portfolioData.socialProof.map((stat, i) => (
                         <motion.div 
@@ -177,58 +198,83 @@ export default function Home() {
                 </div>
             </div>
 
-            {portfolioData.projects.map((project, i) => (
-              <motion.div
-                layoutId={`card-${project.id}`}
-                key={project.id}
-                onClick={() => openView(project.id)}
-                className="col-span-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.1 + 0.2 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="absolute top-4 right-4 transition-all duration-300">
-                  <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} className="w-10 h-10 md:w-12 md:h-12" />
-                </div>
-                <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full ${project.status === 'LIVE APP' ? 'text-green-400 border-green-900/50 bg-green-950/30' : 'text-cyan-400 border-cyan-900/50 bg-cyan-950/30'}`}>
-                      {project.status}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.title}</h3>
-                  <p className="text-xs text-neutral-400 line-clamp-2">{project.summary}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-24">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Shipped Products</h2>
+              <div className="grid grid-cols-1 gap-6">
+                {shippedProducts.map((project, i) => (
+                  <motion.div
+                    layoutId={`card-${project.id}`}
+                    key={project.id}
+                    onClick={() => openView(project.id)}
+                    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group flex flex-col md:flex-row items-start gap-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <div className="w-16 h-16 bg-black/20 border border-white/10 rounded-xl flex items-center justify-center shrink-0">
+                      <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} />
+                    </div>
+                    <div className='flex-1'>
+                      <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.heading}</h3>
+                      <p className="text-sm text-neutral-400 mb-4">{project.description}</p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.techStackBadge.map(tech => (
+                          <span key={tech} className="text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full text-cyan-400 border-cyan-900/50 bg-cyan-950/30">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="w-full md:w-auto flex items-center justify-end gap-2 ml-auto">
+                        {project.secondaryLink && (
+                           <Link href={project.secondaryLink.link} className="text-xs font-bold text-neutral-300 hover:text-white transition-colors px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                                {project.secondaryLink.text}
+                           </Link>
+                        )}
+                       <a href={project.cta.link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold bg-cyan-500 text-black hover:bg-cyan-400 px-4 py-2 rounded-full transition-colors flex items-center gap-1">
+                           {project.cta.text}
+                       </a>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
 
-           <div className="my-24">
-                <h2 className="text-3xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">Technical Arsenal</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {portfolioData.skills.map((skillCategory, i) => (
-                        <motion.div 
-                          key={i} 
-                          className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 group hover:border-cyan-500/20"
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ delay: i * 0.1 }}
-                          viewport={{ once: true }}
-                        >
-                            <h3 className="font-bold text-lg mb-4 text-cyan-400">{skillCategory.title}</h3>
-                            <ul className="space-y-2">
-                                {skillCategory.items.map((item, j) => (
-                                    <li key={j} className="text-neutral-300 text-sm flex items-center gap-3">
-                                        <div className="w-1.5 h-1.5 bg-neutral-600 rounded-full group-hover:bg-cyan-500 transition-colors" />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    ))}
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-16">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Case Studies</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {caseStudies.map((project, i) => (
+                  <motion.div
+                    layoutId={`card-${project.id}`}
+                    key={project.id}
+                    onClick={() => openView(project.id)}
+                    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group min-h-[180px] md:min-h-[220px] flex flex-col justify-end"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <div className="absolute top-4 right-4 transition-all duration-300">
+                      <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} className="w-10 h-10 md:w-12 md:h-12" />
+                    </div>
+                    <div className="relative z-10">
+                       <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.title}</h3>
+                       <p className="text-sm text-neutral-400 line-clamp-2">{project.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-24">
+                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-12 text-center">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">About Me</h2>
+                    <p className="text-neutral-300 max-w-3xl mx-auto leading-relaxed whitespace-pre-wrap mb-6">{portfolioData.profile.aboutPreview}</p>
+                    <Link href="/about" className="font-bold text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-2">
+                        Read My Full Journey <ArrowRight size={16} />
+                    </Link>
                 </div>
             </div>
+          </div>
         </div>
       </div>
       
@@ -277,10 +323,7 @@ export default function Home() {
                         <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} width={80} height={80} />
                       </div>
                       <div className="pb-1">
-                         <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedProject.title}</h2>
-                         <div className="flex items-center gap-2 mt-1">
-                            <span className="text-cyan-400 font-mono text-[10px] md:text-xs uppercase border border-cyan-500/30 px-2 py-0.5 rounded">{selectedProject.category}</span>
-                         </div>
+                         <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedProject.heading}</h2>
                       </div>
                    </div>
                 </div>
@@ -291,19 +334,28 @@ export default function Home() {
                      <div className="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/5">
                         <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Rocket size={14} /> Key Metrics</h4>
                         <ul className="space-y-3">
-                          {selectedProject.metrics.map((m, i) => (<li key={i} className="text-sm text-neutral-300 flex items-center gap-3"><div className="w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>{m}</li>))}
+                          {selectedProject.metrics.map((m, i) => (<li key={i} className="text-sm text-neutral-300 flex items-center gap-3"><CheckCircle size={16} className="text-green-500"/>{m}</li>))}
                         </ul>
                      </div>
                      <div className="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/5">
-                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Cpu size={14} /> Stack</h4>
+                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Cpu size={14} /> Tech Stack</h4>
                         <div className="flex flex-wrap gap-2">
-                          {selectedProject.stack.map(tech => (<span key={tech} className="px-3 py-1.5 bg-black/40 text-neutral-200 text-xs md:text-sm rounded-lg border border-white/10">{tech}</span>))}
+                          {selectedProject.techStackBadge.map(tech => (<span key={tech} className="px-3 py-1.5 bg-black/40 text-neutral-200 text-xs md:text-sm rounded-lg border border-white/10">{tech}</span>))}
                         </div>
                      </div>
                   </div>
-                  <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className={`w-full md:w-auto inline-flex justify-center items-center gap-3 px-8 py-4 rounded-xl font-bold transition-all ${selectedProject.type === 'app' ? 'bg-cyan-500 text-black hover:bg-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]' : 'bg-white text-black hover:bg-neutral-200'}`}>
-                    {selectedProject.type === 'app' ? 'Launch App' : 'View Presentation'} <ExternalLink size={18} />
-                  </a>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <a href={selectedProject.cta.link} target="_blank" rel="noopener noreferrer" className={`w-full sm:w-auto inline-flex justify-center items-center gap-3 px-8 py-4 rounded-xl font-bold transition-all bg-cyan-500 text-black hover:bg-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]`}>
+                      {selectedProject.cta.text}
+                    </a>
+                    {selectedProject.secondaryLink && (
+                        <Link href={selectedProject.secondaryLink.link} className="font-bold text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-2">
+                            {selectedProject.secondaryLink.text}
+                        </Link>
+                    )}
+                  </div>
+                  
+                  <TechnicalImplementation impl={(selectedProject as any).technicalImplementation} />
                 </div>
               </div>
             </motion.div>
@@ -311,42 +363,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {selectedCareer && (
-          <div className="fixed inset-0 z-40 flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-4 pt-16 pb-28" onClick={closeAllViews}>
-            <motion.div
-              layoutId={`card-${selectedCareer.id}`}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full md:max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh] h-auto"
-            >
-              <button onClick={closeAllViews} className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full hover:bg-white/20 z-20 text-white border border-white/10"><X size={20} /></button>
-
-              <div className="p-6 md:p-12 flex-1 overflow-y-auto custom-scrollbar">
-                <div className="flex items-center gap-4 mb-8">
-                    <div className="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl shrink-0">
-                      <GraduationCap size={24} className="text-cyan-400"/>
-                    </div>
-                    <div>
-                      <span className="text-xs font-mono text-cyan-500/80">{selectedCareer.year}</span>
-                      <h2 className="text-xl md:text-2xl font-bold text-white">{selectedCareer.role}</h2>
-                      <p className="text-sm text-neutral-400">{selectedCareer.org}</p>
-                    </div>
-                </div>
-                <div className="space-y-4 text-neutral-300 text-sm leading-relaxed">
-                  {selectedCareer.desc.split('\n').map((item, index) => {
-                    const trimmedItem = item.trim();
-                    if (trimmedItem.startsWith('•')) {
-                      return <p key={index} className="flex items-start gap-2"><span className='mt-1.5'>•</span><span>{trimmedItem.substring(1).trim()}</span></p>
-                    }
-                    return <p key={index}>{trimmedItem}</p>;
-                  })}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-      
       <AnimatePresence>
         {activeView === 'chat' && (
           <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pb-28" onClick={closeAllViews}>
@@ -365,7 +381,7 @@ export default function Home() {
                   </div>
                   <div>
                       <span className="block font-bold text-sm text-white">AI Twin System</span>
-                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
+                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
                   </div>
                 </div>
                 <button onClick={closeAllViews} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
