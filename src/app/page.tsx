@@ -15,6 +15,13 @@ import {
     BarChart3, TrendingUp, Package, Award
 } from 'lucide-react';
 import FluidBackground from '@/components/FluidBackground';
+import { 
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from '@/components/ui/tooltip';
+
 
 export default function Home() {
   const [activeView, setActiveView] = useState<string | null>(null);
@@ -279,31 +286,40 @@ export default function Home() {
       </div>
       
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95vw]">
-        <div className="bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-full flex gap-6 md:gap-8 shadow-2xl items-center ring-1 ring-white/5">
-           <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={closeAllViews}>
-             <Globe size={22} />
-           </motion.button>
-           
-           <div className="h-6 w-[1px] bg-white/10"></div>
-           
-           <motion.button 
-             whileHover={{ scale: 1.2 }}
-             whileTap={{ scale: 0.9 }} 
-             className="cursor-pointer relative group" 
-             onClick={() => openView('chat')}
-           >
-             <div className="absolute inset-0 bg-cyan-500 rounded-full blur-lg opacity-40 animate-pulse group-hover:opacity-60 transition-opacity"></div>
-             <div className={`relative p-2 rounded-full transition-colors ${activeView === 'chat' ? 'bg-cyan-500 text-black' : 'bg-white/10 text-cyan-400 group-hover:text-white'}`}>
-                 <Sparkles size={22} />
-             </div>
-           </motion.button>
+        <TooltipProvider>
+          <div className="bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-full flex gap-6 md:gap-8 shadow-2xl items-center ring-1 ring-white/5">
+            <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={closeAllViews}>
+              <Globe size={22} />
+            </motion.button>
+            
+            <div className="h-6 w-[1px] bg-white/10"></div>
+            
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <motion.button 
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }} 
+                  className="cursor-pointer relative group" 
+                  onClick={() => openView('chat')}
+                >
+                  <div className="absolute inset-0 bg-cyan-500 rounded-full blur-lg opacity-40 animate-pulse group-hover:opacity-60 transition-opacity"></div>
+                  <div className={`relative p-2 rounded-full transition-colors ${activeView === 'chat' ? 'bg-cyan-500 text-black' : 'bg-white/10 text-cyan-400 group-hover:text-white'}`}>
+                      <Sparkles size={22} />
+                  </div>
+                </motion.button>
+              </TooltipTrigger>
+              <TooltipContent side="top" className="bg-black/50 border-cyan-500/30 text-cyan-300 backdrop-blur-md">
+                <p>Chat with my AI Twin</p>
+              </TooltipContent>
+            </Tooltip>
 
-           <div className="h-6 w-[1px] bg-white/10"></div>
+            <div className="h-6 w-[1px] bg-white/10"></div>
 
-           <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={() => openView('contact')}>
-             <Contact size={22} />
-           </motion.button>
-        </div>
+            <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={() => openView('contact')}>
+              <Contact size={22} />
+            </motion.button>
+          </div>
+        </TooltipProvider>
       </div>
 
       <AnimatePresence>
@@ -381,7 +397,7 @@ export default function Home() {
                   </div>
                   <div>
                       <span className="block font-bold text-sm text-white">AI Twin System</span>
-                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
+                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
                   </div>
                 </div>
                 <button onClick={closeAllViews} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
