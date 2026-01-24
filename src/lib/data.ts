@@ -85,6 +85,23 @@ export const portfolioData = {
 
   projects: [
     {
+      id: "ai-twin",
+      type: "live",
+      title: "AI Twin",
+      heading: "Ask My AI Twin Anything",
+      logoUrl: "/logo.png",
+      description: "A RAG-powered chatbot trained on my portfolio, projects, and methodologies. Built with Gemini 2.5 Flash. Click this card to chat with it.",
+      secondaryText: "This is how I think about AI—not as a toy, but as a practical interface layer for information.",
+      techStackBadge: ["Gemini 2.5 Flash", "RAG", "Next.js"],
+      metrics: [
+        "Trained on 3 product case studies + resume",
+        "Real-time context retrieval",
+        "Custom UI with responsive design"
+      ],
+      cta: { text: "Try It Now ✨", link: "#" },
+      secondaryLink: null
+    },
+    {
       id: "billflow",
       type: "live",
       title: "BillFlow",

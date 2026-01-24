@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -222,7 +223,7 @@ export default function Home() {
                   <motion.div
                     layoutId={`card-${project.id}`}
                     key={project.id}
-                    onClick={() => openView(project.id)}
+                    onClick={() => openView(project.id === 'ai-twin' ? 'chat' : project.id)}
                     className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 cursor-pointer hover:bg-white/10 hover:border-white/20 transition-all relative overflow-hidden group flex flex-col md:flex-row items-start gap-6"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -233,7 +234,10 @@ export default function Home() {
                     </div>
                     <div className='flex-1'>
                       <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.heading}</h3>
-                      <p className="text-sm text-neutral-400 mb-4">{project.description}</p>
+                      <p className="text-sm text-neutral-400 mb-2">{project.description}</p>
+                      {project.secondaryText && (
+                        <p className="text-xs text-neutral-500 italic mb-4">{project.secondaryText}</p>
+                      )}
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.techStackBadge.map(tech => (
                           <span key={tech} className="text-[10px] font-mono uppercase tracking-widest border px-2 py-0.5 rounded-full text-cyan-400 border-cyan-900/50 bg-cyan-950/30">
@@ -248,9 +252,16 @@ export default function Home() {
                                 {project.secondaryLink.text}
                            </Link>
                         )}
-                       <a href={project.cta.link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold bg-cyan-500 text-black hover:bg-cyan-400 px-4 py-2 rounded-full transition-colors flex items-center gap-1">
-                           {project.cta.text}
-                       </a>
+                       
+                        {project.id === 'ai-twin' ? (
+                          <div className="text-xs font-bold bg-cyan-500 text-black px-4 py-2 rounded-full flex items-center gap-1 cursor-pointer">
+                            {project.cta.text}
+                          </div>
+                        ) : (
+                          <a href={project.cta.link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold bg-cyan-500 text-black hover:bg-cyan-400 px-4 py-2 rounded-full transition-colors flex items-center gap-1">
+                             {project.cta.text}
+                          </a>
+                        )}
                     </div>
                   </motion.div>
                 ))}

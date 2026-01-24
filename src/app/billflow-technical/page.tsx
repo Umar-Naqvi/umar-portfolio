@@ -246,6 +246,38 @@ export default function BillflowTechnicalPage() {
                     </div>
                 </Section>
 
+                <Section title="Bonus: AI Twin - A RAG Implementation">
+                    <div className="p-8 bg-white/5 border border-white/10 rounded-2xl space-y-8">
+                        <p className="text-lg text-neutral-300">While building my portfolio, I realized: "Why make recruiters read a PDF resume when they can just ask questions?"</p>
+                        
+                        <div>
+                            <h3 className="text-xl font-semibold text-cyan-400 mb-3">The Build:</h3>
+                            <ul className="space-y-2 list-disc list-inside text-neutral-300">
+                                <li>Built a custom RAG (Retrieval-Augmented Generation) chatbot using Gemini 2.5 Flash</li>
+                                <li>Trained it on all my project docs (BillFlow, DukaanBill, NoteVault), resume, and methodologies</li>
+                                <li>Custom chat UI with suggested prompts and error handling</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 className="text-xl font-semibold text-cyan-400 mb-3">Technical Stack:</h3>
+                            <ul className="space-y-2 list-disc list-inside text-neutral-300">
+                                <li>Gemini 2.5 Flash API (for speed + cost efficiency)</li>
+                                <li>Vector embeddings for context retrieval</li>
+                                <li>Next.js API routes for backend</li>
+                                <li>Responsive modal interface</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 className="text-xl font-semibold text-cyan-400 mb-3">Why This Matters:</h3>
+                            <p className="text-neutral-300">This isn't a resume gimmick—it's a demonstration of practical AI implementation. I can architect, build, and deploy AI features that solve real UX problems.</p>
+                        </div>
+                        
+                        <p className="text-cyan-400 font-medium">Try it: Click the ✨ icon on my portfolio to chat with my AI twin.</p>
+                    </div>
+                </Section>
+
             </div>
         </main>
     )

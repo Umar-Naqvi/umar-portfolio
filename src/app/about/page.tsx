@@ -43,7 +43,12 @@ const aboutData = {
                 "Technical documentation",
                 "Debugging complex issues",
             ],
-            outro: "This doesn't replace engineering—it amplifies it. I review, refactor, and own every line of code that ships."
+            outro: "This doesn't replace engineering—it amplifies it. I review, refactor, and own every line of code that ships.",
+            buildWithAI: {
+                title: "But I also BUILD with AI:",
+                content: "My portfolio features a custom RAG chatbot (my \"AI Twin\") that can answer questions about my work. This demonstrates that I don't just use AI tools—I architect AI-powered features from scratch.",
+                cta: "Try it: Click the ✨ icon on my portfolio to chat with my AI twin"
+            }
         }
     },
     myJourney: {
@@ -98,7 +103,13 @@ export default function AboutPage() {
                              <ul className="space-y-2 list-disc list-inside text-neutral-300 mb-3">
                                 {aboutData.technicalFoundation.aiAccelerated.points.map((point, i) => <li key={i}>{point}</li>)}
                             </ul>
-                            <p className="text-neutral-400 italic">{aboutData.technicalFoundation.aiAccelerated.outro}</p>
+                            <p className="text-neutral-400 italic mb-6">{aboutData.technicalFoundation.aiAccelerated.outro}</p>
+                            
+                            <div className="mt-6 pt-6 border-t border-white/10">
+                                <h4 className="font-semibold text-cyan-400 mb-2">{aboutData.technicalFoundation.aiAccelerated.buildWithAI.title}</h4>
+                                <p className="text-neutral-300 mb-3">{aboutData.technicalFoundation.aiAccelerated.buildWithAI.content}</p>
+                                <p className="text-sm text-cyan-500">{aboutData.technicalFoundation.aiAccelerated.buildWithAI.cta}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
