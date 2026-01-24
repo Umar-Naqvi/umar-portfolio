@@ -9,7 +9,7 @@ export default function FluidBackground() {
         src="/bg.png"
         alt="Abstract background"
         fill
-        className="object-cover blur-md opacity-30"
+        className="object-cover blur-md opacity-[.15]"
       />
     </div>
   );
