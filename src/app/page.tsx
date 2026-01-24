@@ -325,52 +325,54 @@ export default function Home() {
       
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95vw]">
         <TooltipProvider>
-          <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-full flex gap-6 md:gap-8 shadow-2xl items-center ring-1 ring-white/5">
-            <AnimatePresence>
-              {showAiHint && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.9, transition: { duration: 0.2 } }}
-                  className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-max"
-                >
-                  <div className="bg-cyan-500 text-black text-xs font-bold rounded-full shadow-lg shadow-cyan-500/40 relative pl-4 pr-3 py-2 flex items-center gap-2">
-                    <p>Chat with my AI Twin!</p>
-                    <button
-                      onClick={() => setShowAiHint(false)}
-                      className="p-1 rounded-full bg-black/10 hover:bg-black/20 transition-colors"
-                    >
-                      <X size={12} />
-                    </button>
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-8 border-x-transparent border-t-[8px] border-t-cyan-500"></div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <div className="bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-full flex gap-6 md:gap-8 shadow-2xl items-center ring-1 ring-white/5">
             <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={closeAllViews}>
               <Globe size={22} />
             </motion.button>
             
             <div className="h-6 w-[1px] bg-white/10"></div>
             
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <motion.button 
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }} 
-                  className="cursor-pointer relative group" 
-                  onClick={() => openView('chat')}
-                >
-                  <div className="absolute inset-0 bg-cyan-500 rounded-full blur-lg opacity-40 animate-pulse group-hover:opacity-60 transition-opacity"></div>
-                  <div className={`relative p-2 rounded-full transition-colors ${activeView === 'chat' ? 'bg-cyan-500 text-black' : 'bg-white/10 text-cyan-400 group-hover:text-white'}`}>
-                      <Sparkles size={22} />
-                  </div>
-                </motion.button>
-              </TooltipTrigger>
-              <TooltipContent side="top" className="bg-black/50 border-cyan-500/30 text-cyan-300 backdrop-blur-md">
-                <p>Chat with my AI Twin</p>
-              </TooltipContent>
-            </Tooltip>
+            <div className="relative">
+              <AnimatePresence>
+                {showAiHint && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.9, transition: { duration: 0.2 } }}
+                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-max"
+                  >
+                    <div className="bg-cyan-500 text-black text-xs font-bold rounded-full shadow-lg shadow-cyan-500/40 relative pl-4 pr-3 py-2 flex items-center gap-2">
+                      <p>Chat with my AI Twin!</p>
+                      <button
+                        onClick={() => setShowAiHint(false)}
+                        className="p-1 rounded-full bg-black/10 hover:bg-black/20 transition-colors"
+                      >
+                        <X size={12} />
+                      </button>
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-8 border-x-transparent border-t-[8px] border-t-cyan-500"></div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <motion.button 
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }} 
+                    className="cursor-pointer relative group" 
+                    onClick={() => openView('chat')}
+                  >
+                    <div className="absolute inset-0 bg-cyan-500 rounded-full blur-lg opacity-40 animate-pulse group-hover:opacity-60 transition-opacity"></div>
+                    <div className={`relative p-2 rounded-full transition-colors ${activeView === 'chat' ? 'bg-cyan-500 text-black' : 'bg-white/10 text-cyan-400 group-hover:text-white'}`}>
+                        <Sparkles size={22} />
+                    </div>
+                  </motion.button>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="bg-black/50 border-cyan-500/30 text-cyan-300 backdrop-blur-md">
+                  <p>Chat with my AI Twin</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
 
             <div className="h-6 w-[1px] bg-white/10"></div>
 
@@ -587,4 +589,3 @@ export default function Home() {
   );
 }
 
-    
