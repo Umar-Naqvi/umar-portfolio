@@ -308,9 +308,9 @@ export default function Home() {
                             <h3 className="text-lg font-bold text-cyan-400 mb-4">{skillCategory.title}</h3>
                             <ul className="space-y-3">
                                 {skillCategory.items.map((item, j) => (
-                                    <li key={j} className="flex items-start gap-3 group/item">
-                                        <div className="w-2 h-2 rounded-full bg-neutral-600/80 mt-[7px] shrink-0 transition-all duration-300 ease-in-out group-hover/item:bg-cyan-400 group-hover/item:shadow-[0_0_8px_1px_hsl(var(--primary))]"></div>
-                                        <span className="text-sm text-neutral-400 transition-colors group-hover/item:text-neutral-100">{item}</span>
+                                    <li key={j} className="flex items-start gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-neutral-600/80 mt-[7px] shrink-0 transition-all duration-300 ease-in-out group-hover:bg-cyan-400 group-hover:shadow-[0_0_8px_1px_hsl(var(--primary))]"></div>
+                                        <span className="text-sm text-neutral-400 transition-colors group-hover:text-neutral-100">{item}</span>
                                     </li>
                                 ))}
                             </ul>
