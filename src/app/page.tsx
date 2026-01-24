@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -26,6 +24,7 @@ import {
 
 export default function Home() {
   const [activeView, setActiveView] = useState<string | null>(null);
+  const [showAiHint, setShowAiHint] = useState(false);
 
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
     api: '/api/chat',
@@ -46,6 +45,21 @@ export default function Home() {
       scrollToBottom();
     }
   }, [messages, activeView]);
+
+  useEffect(() => {
+    const timer1 = setTimeout(() => {
+      setShowAiHint(true);
+    }, 2500); // Show after 2.5s
+
+    const timer2 = setTimeout(() => {
+      setShowAiHint(false);
+    }, 8500); // Disappear after 6s more.
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -316,7 +330,22 @@ export default function Home() {
       
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95vw]">
         <TooltipProvider>
-          <div className="bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-full flex gap-6 md:gap-8 shadow-2xl items-center ring-1 ring-white/5">
+          <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-4 rounded-full flex gap-6 md:gap-8 shadow-2xl items-center ring-1 ring-white/5">
+            <AnimatePresence>
+              {showAiHint && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.9, transition: { duration: 0.2 } }}
+                  className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-max"
+                >
+                  <div className="bg-cyan-500 text-black text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-cyan-500/40 relative">
+                    <p>Chat with my AI Twin!</p>
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-8 border-x-transparent border-t-[8px] border-t-cyan-500"></div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
             <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="cursor-pointer text-neutral-400 hover:text-white flex flex-col items-center gap-1 group relative" onClick={closeAllViews}>
               <Globe size={22} />
             </motion.button>
