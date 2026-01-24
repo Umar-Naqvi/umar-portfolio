@@ -482,7 +482,7 @@ export default function Home() {
                      </div>
                      <p className="text-lg font-medium text-white mb-2">System Online ⚡️</p>
                      <div className="text-sm text-neutral-400 space-y-2 max-w-sm">
-                         <p>I am Umar's AI Digital Twin. I have access to his entire neural network—from his 0-to-1 Product Management strategies to his obsession with Firebase Studio.</p>
+                         <p>I am Umar's AI Digital Twin. I have access to his entire technical and product knowledge—from his 0-to-1 product strategies to his full-stack implementations with Firebase and AI.</p>
                          <p>Initiate a query below! 👇</p>
                      </div>
                      <div className="flex flex-wrap gap-2 justify-center mt-6">
