@@ -127,3 +127,5 @@ export async function chat(messages: CoreMessage[]) {
 
   return result.toAIStream();
 }
+
+    

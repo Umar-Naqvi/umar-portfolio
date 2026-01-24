@@ -47,17 +47,12 @@ export default function Home() {
   }, [messages, activeView]);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => {
+    const timer = setTimeout(() => {
       setShowAiHint(true);
     }, 2500); // Show after 2.5s
 
-    const timer2 = setTimeout(() => {
-      setShowAiHint(false);
-    }, 8500); // Disappear after 6s more.
-
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -339,8 +334,14 @@ export default function Home() {
                   exit={{ opacity: 0, y: 10, scale: 0.9, transition: { duration: 0.2 } }}
                   className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-max"
                 >
-                  <div className="bg-cyan-500 text-black text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-cyan-500/40 relative">
+                  <div className="bg-cyan-500 text-black text-xs font-bold rounded-full shadow-lg shadow-cyan-500/40 relative pl-4 pr-3 py-2 flex items-center gap-2">
                     <p>Chat with my AI Twin!</p>
+                    <button
+                      onClick={() => setShowAiHint(false)}
+                      className="p-1 rounded-full bg-black/10 hover:bg-black/20 transition-colors"
+                    >
+                      <X size={12} />
+                    </button>
                     <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-8 border-x-transparent border-t-[8px] border-t-cyan-500"></div>
                   </div>
                 </motion.div>
@@ -455,7 +456,7 @@ export default function Home() {
                   </div>
                   <div>
                       <span className="block font-bold text-sm text-white">AI Twin System</span>
-                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
+                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
                   </div>
                 </div>
                 <button onClick={closeAllViews} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
@@ -585,3 +586,5 @@ export default function Home() {
     </main>
   );
 }
+
+    
