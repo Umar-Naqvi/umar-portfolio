@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -140,7 +139,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen w-full bg-[#050505] text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
+    <main className="min-h-screen w-full text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
       <FluidBackground />
       
 

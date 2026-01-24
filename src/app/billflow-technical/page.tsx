@@ -138,7 +138,7 @@ const SubSection = ({ title, children }: { title: string, children: React.ReactN
 
 export default function BillflowTechnicalPage() {
     return (
-        <main className="min-h-screen w-full bg-[#050505] text-white font-sans selection:bg-cyan-500/30">
+        <main className="min-h-screen w-full text-white font-sans selection:bg-cyan-500/30">
             <FluidBackground />
             
 
