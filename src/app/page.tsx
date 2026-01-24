@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -12,7 +13,7 @@ import {
     Rocket, Globe, Sparkles, 
     Contact, Cpu, Download, GraduationCap, Briefcase,
     Send, Terminal, User, Bot, CheckCircle, ArrowRight,
-    BarChart3, TrendingUp, Package, Award
+    BarChart3, TrendingUp, Package, Award, Youtube, Instagram
 } from 'lucide-react';
 import FluidBackground from '@/components/FluidBackground';
 import { 
@@ -154,11 +155,13 @@ export default function Home() {
                     </motion.div>
                 </div>
                 
-                <h2 className="text-lg md:text-xl font-medium text-neutral-300 mb-1">{portfolioData.profile.name}</h2>
                 <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-300 mb-2 tracking-tight">
-                  {portfolioData.profile.role}
+                  {portfolioData.profile.name}
                 </h1>
-                <p className="text-xl md:text-2xl text-cyan-400 font-medium mb-4">{portfolioData.profile.tagline}</p>
+                <p className="text-xl md:text-2xl font-medium text-neutral-300 mb-1">
+                  {portfolioData.profile.role}
+                </p>
+                <p className="text-lg md:text-xl text-cyan-400 font-medium mb-4">{portfolioData.profile.tagline}</p>
 
                 <p className="text-sm md:text-base text-neutral-400 max-w-3xl leading-relaxed">
                   {portfolioData.profile.bio}
@@ -270,6 +273,32 @@ export default function Home() {
                   </motion.div>
                 ))}
               </div>
+            </div>
+
+             <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-24">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight text-center">My Stack</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {portfolioData.skills.map((skillCategory, i) => (
+                        <motion.div 
+                            key={i} 
+                            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 group hover:border-white/20 transition-colors"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.1, duration: 0.5 }}
+                            viewport={{ once: true }}
+                        >
+                            <h3 className="text-lg font-bold text-cyan-400 mb-4">{skillCategory.title}</h3>
+                            <ul className="space-y-2">
+                                {skillCategory.items.map((item, j) => (
+                                    <li key={j} className="text-sm text-neutral-300 flex items-start gap-2">
+                                        <CheckCircle size={14} className="shrink-0 mt-1 text-green-500/70" />
+                                        <span>{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
 
             <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-24">
@@ -397,7 +426,7 @@ export default function Home() {
                   </div>
                   <div>
                       <span className="block font-bold text-sm text-white">AI Twin System</span>
-                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-2.5-FLASH</span>
+                      <span className="block text-[10px] text-cyan-300/60 font-mono">ONLINE • GEMINI-1.5-FLASH</span>
                   </div>
                 </div>
                 <button onClick={closeAllViews} className="p-2 hover:bg-white/10 rounded-full transition-colors text-white">
