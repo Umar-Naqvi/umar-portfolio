@@ -130,7 +130,7 @@ export const portfolioData = {
         "Instant search & auto-calculation",
         "Print-ready invoices"
       ],
-      cta: { text: "View Case Study →", link: "https://docs.google.com/presentation/d/1EKhmWHEms5L6Ej2P1iZzdBX_6KTtW2tr/edit?usp=sharing" },
+      cta: { text: "View Case Study →", link: "https://drive.google.com/file/d/1EKhmWHEms5L6Ej2P1iZzdBX_6KTtW2tr/view?usp=drive_link" },
       technicalImplementation: {
         title: "Technical Implementation",
         techDecisions: {
@@ -164,7 +164,7 @@ export const portfolioData = {
         "Automated flashcard creation",
         "Real-time collaboration"
       ],
-      cta: { text: "View Case Study →", link: "https://docs.google.com/presentation/d/1yHjGt3Hy1qcDq7GE8Sc40450laAAVfz3/edit?usp=sharing" },
+      cta: { text: "View Case Study →", link: "https://drive.google.com/file/d/1yHjGt3Hy1qcDq7GE8Sc40450laAAVfz3/view?usp=drive_link" },
       technicalImplementation: {
         title: "Technical Implementation",
         techDecisions: {
