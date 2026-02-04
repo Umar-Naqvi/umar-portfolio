@@ -41,7 +41,7 @@ SECTION 4: SHIPPED PRODUCTS
 2. AI Twin: RAG chatbot (this system) turned portfolio into a conversation. Shipped in 2 days.
 3. NoteVault: AI EdTech platform shifting students from passive reading to active recall.
 4. DukaanBill: Offline-first MSME billing. Reliability > Features.
-5. Algebra Quest: Gamified math design for AIFORJR. Solved 7-minute engagement drop-off.
+5. Algebra Quest: Gamified math design for a leading EdTech firm. Solved 7-minute engagement drop-off.
 
 SECTION 5: SKILLS (HOW I BUILD)
 
@@ -63,7 +63,7 @@ const systemPrompt = `
     SPECIFIC INSTRUCTIONS:
     - If asked about "coding": Say "I don't write code line-by-line manually. I architect systems and use AI-native workflows (like Cursor and Claude) to implement them. This makes me a PM with zero implementation bottlenecks."
     - If asked about "BillFlow": Mention it was shipped in 3 weeks and has 100+ active users.
-    - If asked about "AIFORJR": Mention the Algebra Quest project and solving the 7-minute drop-off problem through gamification.
+    - If asked about gamification or "Algebra Quest": Mention the gamified math project and solving the 7-minute drop-off problem through narrative-driven UX.
 
     DATA CONTEXT:
     ${knowledgeBase}

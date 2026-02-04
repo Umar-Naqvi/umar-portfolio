@@ -16,12 +16,12 @@ const philosophyPoints = [
     {
         icon: <Target className="text-cyan-400" size={24} />,
         title: "Constraints Breed Creativity",
-        body: "AIFORJR assignment had strict requirements (Grade 3-6 math, 10 minutes, prevent drop-off). I chose the hardest topic (algebra variables) to prove gamification works on difficult concepts."
+        body: "A recent EdTech assignment had strict requirements (Grade 3-6 math, 10 minutes, prevent drop-off). I chose the hardest topic (algebra variables) to prove gamification works on difficult concepts."
     },
     {
         icon: <BarChart3 className="text-cyan-400" size={24} />,
         title: "Metrics > Opinions",
-        body: "For BillFlow, I track invoices per user, retention, and feature adoption. For AIFORJR, I proposed Mission Completion Rate as the North Star. Data tells you if the product works. Opinions don't."
+        body: "For BillFlow, I track invoices per user, retention, and feature adoption. For my EdTech projects, I proposed Mission Completion Rate as the North Star. Data tells you if the product works. Opinions don't."
     },
     {
         icon: <Users className="text-cyan-400" size={24} />,

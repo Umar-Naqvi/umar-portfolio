@@ -146,7 +146,7 @@ export const portfolioData = {
       id: "algebra-quest",
       type: "case-study",
       title: "Algebra Quest",
-      heading: "Gamified Math Learning (AIFORJR)",
+      heading: "Gamified Math Learning",
       icon: "Variable",
       logoUrl: "", 
       description: "Designed a narrative-driven game to keep kids engaged past the 7-minute drop-off point in math lessons.",
