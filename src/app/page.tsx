@@ -12,7 +12,7 @@ import {
     Rocket, Cpu, Download,
     Send, Terminal, User, Bot, CheckCircle, ArrowRight,
     BarChart3, TrendingUp, Package, Award, Youtube, Instagram, Globe, Sparkles, Contact,
-    Gamepad2, Lightbulb, Workflow
+    Gamepad2, Lightbulb, Workflow, Variable
 } from 'lucide-react';
 import { 
     Tooltip,
@@ -89,6 +89,16 @@ export default function Home() {
         <Award key={3} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
     ];
     return icons[index] || null;
+  };
+
+  const ProjectLogo = ({ project, size = 48 }: { project: any, size?: number }) => {
+    if (project.icon === 'Variable') {
+      return <Variable size={size} className="text-cyan-400" />;
+    }
+    if (project.logoUrl) {
+      return <Image src={project.logoUrl} alt={`${project.title} logo`} width={size} height={size} className={`w-${size/4} h-${size/4} md:w-${(size+12)/4} md:h-${(size+12)/4}`} />;
+    }
+    return <Package size={size} className="text-neutral-500" />;
   };
 
   const TechnicalImplementation = ({ impl }: { impl: any }) => {
@@ -227,7 +237,7 @@ export default function Home() {
                     transition={{ delay: i * 0.1 }}
                   >
                     <div className="w-16 h-16 bg-black/20 border border-white/10 rounded-xl flex items-center justify-center shrink-0">
-                      <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} />
+                      <ProjectLogo project={project} size={48} />
                     </div>
                     <div className='flex-1'>
                       <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.heading}</h3>
@@ -279,7 +289,7 @@ export default function Home() {
                     transition={{ delay: i * 0.1 }}
                   >
                     <div className="absolute top-4 right-4 transition-all duration-300">
-                      <Image src={project.logoUrl} alt={`${project.title} logo`} width={48} height={48} className="w-10 h-10 md:w-12 md:h-12" />
+                      <ProjectLogo project={project} size={48} />
                     </div>
                     <div className="relative z-10">
                        <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.title}</h3>
@@ -402,7 +412,7 @@ export default function Home() {
                 <div className="h-40 md:h-48 bg-gradient-to-r from-cyan-900/20 to-purple-900/20 relative flex items-center justify-center">
                    <div className="absolute -bottom-8 left-6 md:left-12 flex items-end gap-4">
                       <div className="w-16 h-16 md:w-20 md:h-20 p-2 flex items-center justify-center bg-black/30 rounded-2xl border border-white/10 backdrop-blur-sm">
-                        <Image src={selectedProject.logoUrl} alt={`${selectedProject.title} logo`} width={80} height={80} />
+                        <ProjectLogo project={selectedProject} size={64} />
                       </div>
                       <div className="pb-1">
                          <h2 className="text-2xl md:text-4xl font-bold text-white">{selectedProject.heading}</h2>
@@ -593,4 +603,3 @@ export default function Home() {
     </main>
   );
 }
-

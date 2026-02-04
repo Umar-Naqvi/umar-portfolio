@@ -147,7 +147,8 @@ export const portfolioData = {
       type: "case-study",
       title: "Algebra Quest",
       heading: "Gamified Math Learning (AIFORJR)",
-      logoUrl: "/notevault.png",
+      icon: "Variable",
+      logoUrl: "", 
       description: "Designed a narrative-driven game to keep kids engaged past the 7-minute drop-off point in math lessons.",
       techStackBadge: ["Gamification", "Product Design", "EdTech"],
       metrics: [
