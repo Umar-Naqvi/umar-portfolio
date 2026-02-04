@@ -1,10 +1,11 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: 'Portfolio | Mohammed Umar Ben Naqvi | AI Product Manager',
-  description: 'AI-First Product Manager & Developer building the future, 0-to-1.',
+  description: 'AI-Native Product Manager & Builder shipping products from 0-to-1 using AI-accelerated development.',
 };
 
 export default function RootLayout({

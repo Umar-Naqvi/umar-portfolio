@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -10,7 +11,8 @@ import {
     Github, Linkedin, Mail, Phone, ExternalLink, X, 
     Rocket, Cpu, Download,
     Send, Terminal, User, Bot, CheckCircle, ArrowRight,
-    BarChart3, TrendingUp, Package, Award, Youtube, Instagram, Globe, Sparkles, Contact
+    BarChart3, TrendingUp, Package, Award, Youtube, Instagram, Globe, Sparkles, Contact,
+    Gamepad2, Lightbulb, Workflow
 } from 'lucide-react';
 import { 
     Tooltip,
@@ -47,7 +49,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAiHint(true);
-    }, 2500); // Show after 2.5s
+    }, 2500);
 
     return () => {
       clearTimeout(timer);
@@ -81,9 +83,9 @@ export default function Home() {
   
   const StatIcon = ({ index }: { index: number }) => {
     const icons = [
-        <BarChart3 key={0} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
-        <TrendingUp key={1} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
-        <Package key={2} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
+        <Package key={0} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
+        <BarChart3 key={1} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
+        <TrendingUp key={2} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
         <Award key={3} className="w-5 h-5 mx-auto mb-2 text-cyan-400" />,
     ];
     return icons[index] || null;
@@ -166,7 +168,7 @@ export default function Home() {
                 </p>
                 <p className="text-lg md:text-xl text-cyan-400 font-medium mb-4">{portfolioData.profile.tagline}</p>
 
-                <p className="text-sm md:text-base text-neutral-400 max-w-3xl leading-relaxed">
+                <p className="text-sm md:text-base text-neutral-400 max-w-3xl leading-relaxed whitespace-pre-wrap">
                   {portfolioData.profile.bio}
                 </p>
               </div>
@@ -182,7 +184,7 @@ export default function Home() {
                   <Mail size={20} />
                 </a>
                  <div className="flex-grow"></div>
-                 <div className="bg-white/5 border border-white/10 rounded-full text-xs text-neutral-300 px-4 py-2 flex items-center gap-2">
+                 <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-full text-xs text-cyan-300 px-4 py-2 flex items-center gap-2 font-medium">
                    <span className="relative flex h-2 w-2">
                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -212,7 +214,7 @@ export default function Home() {
             </div>
 
             <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-24">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Shipped Products</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Products Shipped Solo</h2>
               <div className="grid grid-cols-1 gap-6">
                 {shippedProducts.map((project, i) => (
                   <motion.div
@@ -229,7 +231,7 @@ export default function Home() {
                     </div>
                     <div className='flex-1'>
                       <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-100 transition-colors">{project.heading}</h3>
-                      <p className="text-sm text-neutral-400 mb-2">{project.description}</p>
+                      <p className="text-sm text-neutral-400 mb-2 leading-relaxed whitespace-pre-wrap">{project.description}</p>
                       {project.secondaryText && (
                         <p className="text-xs text-neutral-500 italic mb-4">{project.secondaryText}</p>
                       )}
@@ -264,7 +266,7 @@ export default function Home() {
             </div>
 
             <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-16">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Case Studies</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Product Case Studies</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {caseStudies.map((project, i) => (
                   <motion.div
@@ -289,7 +291,7 @@ export default function Home() {
             </div>
 
              <div className="col-span-1 md:col-span-2 lg:col-span-3 mt-24">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight text-center">My Stack</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight text-center">How I Build Products</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {portfolioData.skills.map((skillCategory, i) => (
                         <motion.div 
@@ -319,7 +321,7 @@ export default function Home() {
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">About Me</h2>
                     <p className="text-neutral-300 max-w-3xl mx-auto leading-relaxed whitespace-pre-wrap mb-6">{portfolioData.profile.aboutPreview}</p>
                     <Link href="/about" className="font-bold text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-2">
-                        Read My Full Journey <ArrowRight size={16} />
+                        View PM Philosophy & Journey <ArrowRight size={16} />
                     </Link>
                 </div>
             </div>
@@ -409,16 +411,16 @@ export default function Home() {
                 </div>
 
                 <div className="p-6 md:p-12 pt-16 md:pt-16">
-                  <p className="text-base md:text-lg text-neutral-300 mb-8 leading-relaxed max-w-3xl">{selectedProject.description}</p>
+                  <p className="text-base md:text-lg text-neutral-300 mb-8 leading-relaxed max-w-3xl whitespace-pre-wrap">{selectedProject.description}</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                      <div className="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/5">
-                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Rocket size={14} /> Key Metrics</h4>
+                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Lightbulb size={14} /> Key Highlights</h4>
                         <ul className="space-y-3">
                           {selectedProject.metrics.map((m, i) => (<li key={i} className="text-sm text-neutral-300 flex items-center gap-3"><CheckCircle size={16} className="text-green-500"/>{m}</li>))}
                         </ul>
                      </div>
                      <div className="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/5">
-                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Cpu size={14} /> Tech Stack</h4>
+                        <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2"><Workflow size={14} /> Stack & Tools</h4>
                         <div className="flex flex-wrap gap-2">
                           {selectedProject.techStackBadge.map(tech => (<span key={tech} className="px-3 py-1.5 bg-black/40 text-neutral-200 text-xs md:text-sm rounded-lg border border-white/10">{tech}</span>))}
                         </div>
@@ -482,7 +484,7 @@ export default function Home() {
                      </div>
                      <div className="flex flex-wrap gap-2 justify-center mt-6">
                          <button type="button" onClick={() => handleQuickReply("Tell me about BillFlow")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"Tell me about BillFlow"</button>
-                         <button type="button" onClick={() => handleQuickReply("How can I contact him?")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How can I contact him?"</button>
+                         <button type="button" onClick={() => handleQuickReply("How do you use AI to ship?")} className="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">"How do you use AI to ship?"</button>
                      </div>
                    </div>
                 )}
@@ -591,3 +593,4 @@ export default function Home() {
     </main>
   );
 }
+

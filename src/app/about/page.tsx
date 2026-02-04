@@ -1,64 +1,34 @@
 
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowLeft, Rocket, Target, Lightbulb, Workflow, BarChart3, Users } from 'lucide-react';
 
-const aboutData = {
-    title: "Builder. Engineer. Product Thinker.",
-    body: "I'm a product engineer who combines strategic product thinking with hands-on technical execution. I don't just design features—I architect systems, write code, and deploy to production.",
-    whatMakesMeDifferent: {
-        title: "What makes me different:",
-        content: "I use AI-native workflows (Cursor, Claude, ChatGPT) not just for code generation, but for architectural planning, debugging, and rapid prototyping. This allows me to compress 3-month development cycles into 2-3 weeks without sacrificing quality."
+const philosophyPoints = [
+    {
+        icon: <Rocket className="text-cyan-400" size={24} />,
+        title: "Ship to Learn, Don't Plan to Perfection",
+        body: "I built BillFlow's MVP in 1 day to validate demand. Most PMs would spend 2 weeks writing specs. I learned more from 5 real users in 1 week than I would from 10 stakeholder meetings."
     },
-    coreBelief: {
-        title: "My Core Belief:",
-        content: "The best product people ship code. Understanding technical constraints isn't optional—it's the foundation of good product decisions."
+    {
+        icon: <Lightbulb className="text-cyan-400" size={24} />,
+        title: "AI is a Tool, Not a Strategy",
+        body: "AI Twin and NoteVault use Gemini API, but AI isn't the product—it's the implementation layer. The product is 'better UX through intelligence.' I focus on user problems, not shiny tech."
     },
-    technicalFoundation: {
-        title: "Technical Foundation",
-        fullStack: {
-            title: "Full-Stack Capabilities:",
-            points: [
-                "Frontend: React, Next.js, TypeScript, Tailwind CSS",
-                "Backend: Firebase (Auth, Firestore, Cloud Functions, Hosting)",
-                "AI Integration: Gemini API, prompt engineering, LLM workflow design",
-                "DevOps: Firebase App Hosting, PWA deployment, performance optimization",
-            ]
-        },
-        productSkills: {
-            title: "Product Skills:",
-            points: [
-                "User Research & Persona Development",
-                "PRD Writing & MVP Scoping",
-                "Metrics Framework (AARRR, North Star)",
-                "Go-to-Market Strategy",
-            ]
-        },
-        aiAccelerated: {
-            title: "AI-Accelerated Development:",
-            intro: "I leverage LLMs for:",
-            points: [
-                "Rapid architecture prototyping",
-                "Code generation with human oversight",
-                "Technical documentation",
-                "Debugging complex issues",
-            ],
-            outro: "This doesn't replace engineering—it amplifies it. I review, refactor, and own every line of code that ships.",
-            buildWithAI: {
-                title: "But I also BUILD with AI:",
-                content: "My portfolio features a custom RAG chatbot (my \"AI Twin\") that can answer questions about my work. This demonstrates that I don't just use AI tools—I architect AI-powered features from scratch.",
-                cta: "Try it: Click the ✨ icon on my portfolio to chat with my AI twin"
-            }
-        }
+    {
+        icon: <Target className="text-cyan-400" size={24} />,
+        title: "Constraints Breed Creativity",
+        body: "AIFORJR assignment had strict requirements (Grade 3-6 math, 10 minutes, prevent drop-off). I chose the hardest topic (algebra variables) to prove gamification works on difficult concepts."
     },
-    myJourney: {
-        title: "My Journey",
-        fromPMtoPE: {
-            title: "From Product Manager to Product Engineer:",
-            content: "My MBA taught me to think strategically about markets and users. But I realized the best product people don't just write specs—they ship. So I taught myself to code using AI-accelerated learning.\n\nIn 6 months, I went from \"can read code\" to \"built and deployed 3 production applications.\" This isn't about being a developer OR a PM—it's about being both. I can discuss go-to-market strategy in the morning and debug Firebase security rules in the afternoon."
-        }
+    {
+        icon: <BarChart3 className="text-cyan-400" size={24} />,
+        title: "Metrics > Opinions",
+        body: "For BillFlow, I track invoices per user, retention, and feature adoption. For AIFORJR, I proposed Mission Completion Rate as the North Star. Data tells you if the product works. Opinions don't."
+    },
+    {
+        icon: <Users className="text-cyan-400" size={24} />,
+        title: "Build for the Worst Case",
+        body: "BillFlow was designed for shop owners with unreliable internet in rural India. If the product works for them, it works for everyone. Design for your least tech-savvy user."
     }
-}
+];
 
 export default function AboutPage() {
     return (
@@ -70,52 +40,73 @@ export default function AboutPage() {
                 </Link>
 
                 <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-300 mb-6 tracking-tight">
-                    {aboutData.title}
+                    I build what I design—using AI as my implementation layer.
                 </h1>
-                <p className="text-lg md:text-xl text-neutral-300 leading-relaxed mb-6">{aboutData.body}</p>
-
-                <div className="space-y-4 text-neutral-400 leading-relaxed mb-12">
-                   <p><strong className="text-neutral-200">{aboutData.whatMakesMeDifferent.title}</strong> {aboutData.whatMakesMeDifferent.content}</p>
-                   <p><strong className="text-neutral-200">{aboutData.coreBelief.title}</strong> {aboutData.coreBelief.content}</p>
-                </div>
                 
-                <div className="p-8 glass-card rounded-2xl mb-12">
-                    <h2 className="text-3xl font-bold text-white mb-6">{aboutData.technicalFoundation.title}</h2>
+                <div className="space-y-6 text-lg md:text-xl text-neutral-300 leading-relaxed mb-16">
+                    <p>I don't write code traditionally. Instead, I architect products and use AI-native workflows to ship them. This allows me to compress months of development into days while maintaining deep technical understanding.</p>
+                </div>
+
+                <div className="glass-card rounded-3xl p-8 md:p-12 mb-16">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">How I Work</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 className="font-semibold text-cyan-400 mb-3">{aboutData.technicalFoundation.fullStack.title}</h3>
-                            <ul className="space-y-2 list-disc list-inside text-neutral-300">
-                                {aboutData.technicalFoundation.fullStack.points.map((point, i) => <li key={i}>{point}</li>)}
-                            </ul>
+                        <div className="space-y-6">
+                            <div className="flex gap-4">
+                                <div className="shrink-0 w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">1</div>
+                                <div>
+                                    <h3 className="font-bold text-white mb-2">Understand the Problem</h3>
+                                    <p className="text-sm text-neutral-400">Deep dive into user research, market analysis, and persona development to find the real friction points.</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="shrink-0 w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">2</div>
+                                <div>
+                                    <h3 className="font-bold text-white mb-2">Architect the Solution</h3>
+                                    <p className="text-sm text-neutral-400">Design data models, user flows, and system architecture. Choosing the right tech (e.g., Firestore vs SQL) for the use case.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="font-semibold text-cyan-400 mb-3">{aboutData.technicalFoundation.productSkills.title}</h3>
-                            <ul className="space-y-2 list-disc list-inside text-neutral-300">
-                                {aboutData.technicalFoundation.productSkills.points.map((point, i) => <li key={i}>{point}</li>)}
-                            </ul>
-                        </div>
-                        <div className="md:col-span-2">
-                             <h3 className="font-semibold text-cyan-400 mb-3">{aboutData.technicalFoundation.aiAccelerated.title}</h3>
-                             <p className="text-neutral-300 mb-2">{aboutData.technicalFoundation.aiAccelerated.intro}</p>
-                             <ul className="space-y-2 list-disc list-inside text-neutral-300 mb-3">
-                                {aboutData.technicalFoundation.aiAccelerated.points.map((point, i) => <li key={i}>{point}</li>)}
-                            </ul>
-                            <p className="text-neutral-400 italic mb-6">{aboutData.technicalFoundation.aiAccelerated.outro}</p>
-                            
-                            <div className="mt-6 pt-6 border-t border-white/10">
-                                <h4 className="font-semibold text-cyan-400 mb-2">{aboutData.technicalFoundation.aiAccelerated.buildWithAI.title}</h4>
-                                <p className="text-neutral-300 mb-3">{aboutData.technicalFoundation.aiAccelerated.buildWithAI.content}</p>
-                                <p className="text-sm text-cyan-500">{aboutData.technicalFoundation.aiAccelerated.buildWithAI.cta}</p>
+                        <div className="space-y-6">
+                            <div className="flex gap-4">
+                                <div className="shrink-0 w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">3</div>
+                                <div>
+                                    <h3 className="font-bold text-white mb-2">Direct AI to Implement</h3>
+                                    <p className="text-sm text-neutral-400">Using Cursor, Claude, and Gemini as my development team to implement the architecture I designed.</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="shrink-0 w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">4</div>
+                                <div>
+                                    <h3 className="font-bold text-white mb-2">Ship and Iterate</h3>
+                                    <p className="text-sm text-neutral-400">Deploying to real users and iterating based on analytics and feedback. Moving at the speed of thought.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <h2 className="text-3xl font-bold text-white mb-4">{aboutData.myJourney.title}</h2>
-                    <div className="bg-cyan-950/20 p-6 rounded-xl border border-cyan-500/20">
-                      <h3 className="font-semibold text-cyan-400 mb-3">{aboutData.myJourney.fromPMtoPE.title}</h3>
-                      <p className="text-neutral-300 leading-relaxed whitespace-pre-wrap">{aboutData.myJourney.fromPMtoPE.content}</p>
+                <div className="mb-24">
+                    <h2 className="text-3xl font-bold text-white mb-12 text-center">My Product Philosophy</h2>
+                    <div className="grid grid-cols-1 gap-6">
+                        {philosophyPoints.map((point, i) => (
+                            <div key={i} className="glass-card rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 hover:border-cyan-500/30 transition-all">
+                                <div className="shrink-0 p-3 bg-white/5 rounded-xl border border-white/10 h-max">
+                                    {point.icon}
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-white mb-3">{point.title}</h3>
+                                    <p className="text-neutral-400 leading-relaxed">{point.body}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="bg-cyan-950/20 p-8 md:p-12 rounded-3xl border border-cyan-500/20">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Technical Depth Without Manual Coding</h2>
+                    <div className="grid md:grid-cols-2 gap-8 text-neutral-300 leading-relaxed">
+                        <p>Most PMs hand off specs to engineers and wait weeks. I compress that cycle. I understand database design, API architecture, and security models because I've architected them myself.</p>
+                        <p>I don't manually write production code—AI does that. But I validate, test, and iterate. This makes me a product manager with zero implementation bottlenecks and the ability to speak the language of engineers natively.</p>
                     </div>
                 </div>
 
