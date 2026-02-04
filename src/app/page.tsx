@@ -553,7 +553,7 @@ export default function Home() {
                   </button>
                 </div>
                 <p className="text-[10px] text-center text-neutral-600 mt-2 font-mono">
-                  the AI can make mistaeks, bit for clarifications <button type="button" onClick={() => setActiveView('contact')} className="underline hover:text-cyan-400 transition-colors">contact me</button>
+                  the AI can make mistakes, but for clarifications <button type="button" onClick={() => setActiveView('contact')} className="underline hover:text-cyan-400 transition-colors">contact me</button>
                 </p>
               </form>
             </motion.div>
@@ -605,4 +605,3 @@ export default function Home() {
     </main>
   );
 }
-
