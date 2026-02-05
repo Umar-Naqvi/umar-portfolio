@@ -1,4 +1,3 @@
-
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Mohammed Umar Ben Naqvi | AI Product Manager',
     description: 'I ship products from 0→1 using AI-accelerated development.',
-    url: 'https://umar.naqvi',
+    url: 'https://umarnaqvi-portfolio.vercel.app/',
     siteName: 'Umar Naqvi Portfolio',
     images: [
       {
@@ -46,8 +45,8 @@ export default function RootLayout({
     "@type": "Person",
     "name": "Mohammed Umar Ben Naqvi",
     "jobTitle": "AI-Native Product Manager",
-    "url": "https://umar.naqvi",
-    "image": "https://umar.naqvi/logo.png",
+    "url": "https://umarnaqvi-portfolio.vercel.app/",
+    "image": "https://umarnaqvi-portfolio.vercel.app/logo.png",
     "sameAs": [
       "https://www.linkedin.com/in/mohammedumarnaqvi/",
       "https://github.com/mdumarnaqvi"

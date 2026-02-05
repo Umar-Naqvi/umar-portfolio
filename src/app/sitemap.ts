@@ -1,8 +1,7 @@
-
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://umar.naqvi'; // Replace with your actual domain
+  const baseUrl = 'https://umarnaqvi-portfolio.vercel.app';
 
   return [
     {
