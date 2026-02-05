@@ -1,7 +1,12 @@
 
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle, ExternalLink } from 'lucide-react';
-import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'BillFlow Deep Dive | Technical Case Study | Umar Naqvi',
+    description: 'Technical breakdown of BillFlow: An offline-first invoicing platform built with Next.js and Firebase for Indian SMBs.',
+};
 
 const content = {
     hero: {

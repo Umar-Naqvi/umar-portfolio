@@ -1,6 +1,12 @@
 
 import Link from 'next/link';
-import { ArrowLeft, Rocket, Target, Lightbulb, Workflow, BarChart3, Users } from 'lucide-react';
+import { ArrowLeft, Rocket, Target, Lightbulb, BarChart3, Users } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'About | Mohammed Umar Ben Naqvi | PM Philosophy',
+    description: 'Learn about Umar\'s product philosophy: Ship to Learn, AI as an Implementation Layer, and Metrics > Opinions.',
+};
 
 const philosophyPoints = [
     {
