@@ -3,10 +3,14 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://umarnaqvi-portfolio.vercel.app'),
   title: 'Portfolio | Mohammed Umar Ben Naqvi | AI Product Manager',
   description: 'AI-Native Product Manager & Builder shipping products from 0-to-1 using AI-accelerated development. Architecting MVPs for SMBs, EdTech, and AI SaaS.',
   keywords: ['AI Product Manager', 'Product Builder', 'AI-Native Development', 'Mohammed Umar Ben Naqvi', 'BillFlow', 'Next.js', 'Firebase', 'Bangalore PM'],
   authors: [{ name: 'Mohammed Umar Ben Naqvi' }],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Mohammed Umar Ben Naqvi | AI Product Manager',
     description: 'I ship products from 0→1 using AI-accelerated development.',
